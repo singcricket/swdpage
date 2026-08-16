@@ -5,8 +5,8 @@ import type { Img } from "@/lib/images";
  * 의료장비.
  *
  * 분류와 설명문은 「장비설명」 원고를 그대로 따랐다.
- * 장비명 표기도 원고 표기를 유지한다 — 제품 사진의 각인과 다른 항목이
- * 몇 개 있는데, 어느 쪽이 맞는지는 병원이 확인할 일이지 임의로 고칠 일이 아니다.
+ * 장비명은 원고 표기와 제품 사진의 각인이 어긋난 세 건을 병원에 확인받아
+ * 정리했다: REMI → REMEDI, BIOLINE → BIONOTE, Fuji NX600i 는 원고가 맞음.
  */
 
 export type EquipmentItem = {
@@ -116,7 +116,7 @@ export const equipmentGroups: EquipmentGroup[] = [
       },
       {
         name: "호르몬 및 특수 검사기",
-        model: "BIOLINE Vcheck V200",
+        model: "BIONOTE Vcheck V200",
         body: "갑상선 호르몬 및 코티솔, SDMA, CRP 등 호르몬 검사를 비롯하여 신장질환, 심장질환, 췌장염에 대한 진단 마커 등 다양한 특수 혈액검사를 실시할 수 있는 장비입니다.",
         image: photos.labVcheck,
       },
@@ -130,7 +130,7 @@ export const equipmentGroups: EquipmentGroup[] = [
     items: [
       {
         name: "치과 전용 방사선",
-        model: "REMI REMEX",
+        model: "REMEDI REMEX",
         body: "반려동물 치과용 방사선 장비로, 외부에서 보이지 않는 치아 뿌리와 치조골 상태를 고해상도로 확인할 수 있습니다. 움직임에도 흔들림 없는 선명한 영상을 제공해 진단의 정확도를 높이며, 수의사가 치료 계획을 빠르게 수립하는 데 큰 도움을 줍니다.",
         image: photos.dentalXray,
       },

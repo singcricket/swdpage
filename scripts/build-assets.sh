@@ -75,7 +75,7 @@ eq "IDEXX Catalyst One.jpg"                         "lab-idexx-catalyst-one.jpg"
 eq "Fuji NX600i.png"                                "lab-fuji-nx600i.png"             png
 eq "Procyte ONE.jpg"                                "lab-procyte-one.jpg"             jpeg
 eq "IDEXX VetStat.jpg"                              "lab-idexx-vetstat.jpg"           jpeg
-eq "BIOLINE Vcheck V200.jpg"                        "lab-bioline-vcheck-v200.jpg"     jpeg
+eq "BIOLINE Vcheck V200.jpg"                        "lab-bionote-vcheck-v200.jpg"     jpeg
 eq "CMS_SMART_ENT-Scope_검이경.png"                    "otoscope-cms-smart-ent.png"      png
 echo "  $(ls $OUT/equipment | wc -l | tr -d ' ') files"
 

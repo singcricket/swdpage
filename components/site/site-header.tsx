@@ -40,6 +40,7 @@ export function SiteHeader() {
             <span className="mx-2 text-border">|</span>
             접수 마감 {hours.lastReception}
           </p>
+
           <a
             href={contact.telHref}
             className="type-label text-ink transition-colors hover:text-teal-deep"
@@ -168,7 +169,10 @@ function DesktopNav({ pathname }: { pathname: string }) {
           sideOffset={14}
           collisionPadding={{ top: 5, bottom: 5, left: 20, right: 20 }}
           collisionAvoidance={{ side: "none" }}
-          className="z-50 h-[var(--positioner-height)] w-[var(--positioner-width)] max-w-[var(--available-width)] transition-[top,left,right,bottom] duration-[var(--duration)] ease-[var(--easing)] before:absolute before:inset-x-0 before:-top-3.5 before:h-3.5 before:content-[''] data-instant:transition-none"
+          // 팝업은 portal 로 body 에 붙으므로 Root 의 `hidden lg:block` 이
+          // 닿지 않는다. 데스크톱에서 메뉴를 연 채 창을 좁히면 모바일 화면에
+          // 드롭다운이 남는다. 여기서 직접 숨긴다.
+          className="z-50 h-[var(--positioner-height)] w-[var(--positioner-width)] max-w-[var(--available-width)] transition-[top,left,right,bottom] duration-[var(--duration)] ease-[var(--easing)] before:absolute before:inset-x-0 before:-top-3.5 before:h-3.5 before:content-[''] max-lg:hidden data-instant:transition-none"
           style={
             {
               "--duration": "0.3s",

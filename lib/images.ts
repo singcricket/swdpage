@@ -118,7 +118,7 @@ export const equipment = {
   },
   dentalXray: {
     src: "/images/equipment/dental-xray-remex.png",
-    alt: "치과 전용 방사선 장비 REMI REMEX",
+    alt: "치과 전용 방사선 장비 REMEDI REMEX",
   },
   dentalUnit: {
     src: "/images/equipment/dental-unit-hanilinus-dolce.jpg",
@@ -145,8 +145,8 @@ export const equipment = {
     alt: "혈액가스 분석기 IDEXX VetStat",
   },
   labVcheck: {
-    src: "/images/equipment/lab-bioline-vcheck-v200.jpg",
-    alt: "호르몬 및 특수 검사기 BIOLINE Vcheck V200",
+    src: "/images/equipment/lab-bionote-vcheck-v200.jpg",
+    alt: "호르몬 및 특수 검사기 BIONOTE Vcheck V200",
   },
   otoscope: {
     src: "/images/equipment/otoscope-cms-smart-ent.png",
