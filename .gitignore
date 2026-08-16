@@ -39,3 +39,8 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# 원본 사진 (촬영 원본 8256x5504, 약 646MB) — git에 넣지 않는다.
+# 사이트가 쓰는 웹 최적화본은 public/images/ 에 있고 그쪽은 커밋한다.
+# 재생성: bash scripts/build-assets.sh
+/public/assets/images/facilities
