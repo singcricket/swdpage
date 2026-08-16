@@ -103,6 +103,12 @@ cp "$SRC_L/logo4.png"      "$OUT/brand/logo-stacked.png"
 cp "$SRC_L/moto.png"       "$OUT/brand/motto-card.png"
 sips -Z 1800 "$SRC_L/front.png"     --out "$OUT/brand/building-night.jpg" -s format jpeg -s formatOptions 82 >/dev/null 2>&1
 sips -Z 1800 "$SRC_L/signboard.png" --out "$OUT/brand/signboard.jpg"      -s format jpeg -s formatOptions 82 >/dev/null 2>&1
+# 약도 — 아래쪽 주소·층 안내 패널은 잘라낸다. 그 내용은 페이지에 HTML 로 있고,
+# 이미지 속 글자는 스크린리더가 읽지 못한다. (원본 843x856 중 위 592px 만)
+ffmpeg -y -loglevel error -i "$ROOT/public/assets/map/route-map.png" \
+  -vf "crop=843:592:0:0" /tmp/_routemap.png 2>/dev/null
+sips -Z 1000 /tmp/_routemap.png --out "$OUT/brand/route-map.png" >/dev/null 2>&1
+rm -f /tmp/_routemap.png
 echo "brand: $(ls $OUT/brand | wc -l | tr -d ' ') files"
 
 echo "---"

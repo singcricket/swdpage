@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import {
   Phone,
   Clock,
@@ -10,7 +11,7 @@ import {
 } from "lucide-react";
 
 import { contact, hours, directions, site, channels } from "@/lib/site";
-import { facility } from "@/lib/images";
+import { facility, brand } from "@/lib/images";
 import { PageHero } from "@/components/site/blocks/page-hero";
 import { ArchImage } from "@/components/site/blocks/arch";
 import {
@@ -168,6 +169,22 @@ export default function VisitPage() {
                 지도는 위치 확인용입니다. 자동차 길찾기는 카카오맵이나
                 네이버지도에서 더 정확합니다.
               </Note>
+
+              {/* 병원이 직접 만든 약도. 지하철에서 걸어오는 경로와 주차장
+                  위치처럼 일반 지도가 알려주지 않는 것이 그려져 있다. */}
+              <figure className="mt-10">
+                <figcaption className="type-label text-teal-deep">
+                  약도
+                </figcaption>
+                <Image
+                  src={brand.routeMap.src}
+                  alt={brand.routeMap.alt}
+                  width={1000}
+                  height={702}
+                  sizes="(min-width: 1024px) 44rem, 92vw"
+                  className="mt-4 h-auto w-full rounded-md border border-border bg-card"
+                />
+              </figure>
             </div>
 
             <dl className="border-t border-border">
