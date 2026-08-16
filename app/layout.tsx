@@ -104,6 +104,10 @@ export default function RootLayout({
     <html
       lang="ko"
       data-scroll-behavior="smooth"
+      // 아래 인라인 스크립트가 첫 페인트 전에 `data-js` 를 붙인다. 서버가
+      // 그리지 않은 속성이라 React 19 는 하이드레이션 불일치로 경고하는데,
+      // 의도된 동작이므로 이 요소에 한해 경고를 끈다. (자식에는 영향 없음)
+      suppressHydrationWarning
       className={cn(
         "h-full antialiased",
         plexKr.variable,
@@ -112,6 +116,17 @@ export default function RootLayout({
       )}
     >
       <body className="flex min-h-full flex-col bg-background text-foreground">
+        {/* 첫 페인트 전에 실행되어 스크롤 리빌의 시작 상태를 결정한다.
+            이 한 줄이 없으면 서버가 그린 내용이 잠깐 보였다가 하이드레이션
+            시점에 숨겨져 깜빡인다. JS가 없으면 속성이 붙지 않아 콘텐츠가
+            그대로 보인다. */}
+        <script
+          dangerouslySetInnerHTML={{
+            // className 을 건드리면 React 가 렌더한 속성과 어긋나 하이드레이션
+            // 경고가 난다. React 가 모르는 data 속성을 쓴다.
+            __html: `document.documentElement.dataset.js=''`,
+          }}
+        />
         <a
           href="#main"
           className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-100 focus:rounded-sm focus:bg-primary focus:px-4 focus:py-2 focus:text-sm focus:text-primary-foreground"

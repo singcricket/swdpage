@@ -325,24 +325,28 @@
 }
 
 @layer components {
-  /* 기본은 «보임».
-     서버가 그린 HTML에는 data-visible 이 없으므로 JS가 죽거나 늦어도
-     콘텐츠는 그대로 읽힌다. 숨기는 일은 JS가 «아직 화면 밖»이라고
-     판단했을 때만 일어난다. */
+  /* 기본은 «보임». JS가 없거나 죽어도 콘텐츠는 그대로 읽힌다. */
   .reveal {
     opacity: 1;
   }
 
-  .reveal[data-visible="false"] {
+  /* JS가 도는 환경에서만 숨긴 채 시작한다. `data-js` 는 body 최상단의
+     인라인 스크립트가 첫 페인트 전에 붙이므로, 서버가 그린 내용이 잠깐
+     보였다가 사라지는 깜빡임이 생기지 않는다. */
+  [data-js] .reveal {
     opacity: 0;
   }
 
+  /* fill-mode 는 반드시 `both`.
+     `forwards` 만 주면 끝난 뒤 상태만 유지되고 animation-delay 구간에는
+     적용되지 않는다. 그 사이 요소가 원래 상태(opacity 1)로 노출됐다가
+     애니메이션이 시작되며 0으로 떨어져 깜빡인다. */
   .reveal[data-visible="true"] {
-    animation: sw-rise 0.75s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    animation: sw-rise 0.75s cubic-bezier(0.16, 1, 0.3, 1) both;
   }
 
   .reveal-arch[data-visible="true"] {
-    animation: sw-arch-open 1.1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    animation: sw-arch-open 1.1s cubic-bezier(0.16, 1, 0.3, 1) both;
   }
 }
 
