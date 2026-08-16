@@ -78,6 +78,17 @@ export type SymptomSection = Base & {
   note?: string;
 };
 
+/**
+ * 이름 없는 항목들의 목록.
+ * 「생활 환경 조언」처럼 제목을 붙일 만한 단위가 아니라 실천 항목만 나열되는 자리.
+ */
+export type ListSection = Base & {
+  kind: "list";
+  intro?: string;
+  items: string[];
+  note?: string;
+};
+
 /** 자유 표 — 나이 환산표, 치주 등급표, 항암 프로토콜 등 */
 export type TableSection = Base & {
   kind: "table";
@@ -103,6 +114,7 @@ export type QuoteSection = Base & {
 
 export type Section =
   | ProseSection
+  | ListSection
   | DiseaseSection
   | TestSection
   | TreatmentSection

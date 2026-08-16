@@ -119,6 +119,23 @@ function SectionBody({ section }: { section: Section }) {
         </div>
       );
 
+    case "list":
+      return (
+        <ul className="measure grid list-none gap-x-8 gap-y-1">
+          {section.items.map((item) => (
+            <li
+              key={item}
+              className="flex items-start gap-3 border-b border-border/70 py-3.5"
+            >
+              <ArchTick />
+              <span className="text-[0.875rem] leading-7 text-ink/85">
+                {item}
+              </span>
+            </li>
+          ))}
+        </ul>
+      );
+
     case "diseases":
       return <DefinitionRows items={section.items} />;
 
@@ -189,10 +206,15 @@ function SectionBody({ section }: { section: Section }) {
       );
 
     case "risk":
+      // 칸마다 테두리를 준다. gap-px + 배경색으로 격자를 그리면 항목 수가
+      // 열 수의 배수가 아닐 때 빈 칸이 회색 블록으로 남는다.
       return (
-        <div className="grid gap-px overflow-hidden rounded-md border border-border bg-border sm:grid-cols-2">
+        <div className="grid gap-4 sm:grid-cols-2">
           {section.groups.map((group) => (
-            <div key={group.label} className="bg-card p-6">
+            <div
+              key={group.label}
+              className="rounded-md border border-border bg-card p-6"
+            >
               <h3 className="type-label text-teal-deep">{group.label}</h3>
               <p className="mt-3 text-[0.875rem] leading-7 text-ink/85">
                 {group.body}

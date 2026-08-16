@@ -41,6 +41,17 @@ export function Reveal({
       return;
     }
 
+    // 이미 화면 안이면 곧바로 재생한다. 앵커 링크로 페이지 중간에 도착한
+    // 경우가 여기 해당하는데, 관찰만 걸어두고 숨겨버리면 도착한 자리가
+    // 빈 화면으로 보인다.
+    const rect = node.getBoundingClientRect();
+    if (rect.top < window.innerHeight && rect.bottom > 0) {
+      node.dataset.visible = "true";
+      return;
+    }
+
+    node.dataset.visible = "false";
+
     const observer = new IntersectionObserver(
       (entries) => {
         for (const entry of entries) {

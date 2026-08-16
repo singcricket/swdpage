@@ -325,7 +325,15 @@
 }
 
 @layer components {
+  /* 기본은 «보임».
+     서버가 그린 HTML에는 data-visible 이 없으므로 JS가 죽거나 늦어도
+     콘텐츠는 그대로 읽힌다. 숨기는 일은 JS가 «아직 화면 밖»이라고
+     판단했을 때만 일어난다. */
   .reveal {
+    opacity: 1;
+  }
+
+  .reveal[data-visible="false"] {
     opacity: 0;
   }
 
