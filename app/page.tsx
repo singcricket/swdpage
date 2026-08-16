@@ -7,6 +7,7 @@ import { vets } from "@/lib/content/team";
 import { facility } from "@/lib/images";
 import { ArchImage } from "@/components/site/blocks/arch";
 import { Reveal } from "@/components/site/blocks/reveal";
+import { stagger } from "@/lib/motion";
 import {
   Eyebrow,
   SectionHeader,
@@ -184,7 +185,7 @@ function Team() {
 
         <ul className="mt-14 grid list-none gap-x-8 gap-y-14 sm:grid-cols-2 lg:grid-cols-4">
           {vets.map((vet, index) => (
-            <Reveal as="li" key={vet.slug} delay={index * 80}>
+            <Reveal as="li" key={vet.slug} delay={stagger(index)}>
               <VetCard vet={vet} />
             </Reveal>
           ))}
@@ -226,7 +227,7 @@ function FacilityPreview() {
 
         <ul className="mt-14 grid list-none gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4">
           {shots.map((shot, index) => (
-            <Reveal as="li" key={shot.label} delay={index * 70}>
+            <Reveal as="li" key={shot.label} delay={stagger(index)}>
               <ArchImage
                 image={shot.image}
                 ratio="window"

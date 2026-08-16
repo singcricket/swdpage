@@ -4,6 +4,7 @@ import { cn } from "@/lib/utils";
 import type { Section } from "@/lib/content/types";
 import { ArchImage } from "./arch";
 import { Reveal } from "./reveal";
+import { stagger } from "@/lib/motion";
 import { Eyebrow, Note, PullQuote, SectionHeader } from "./primitives";
 
 /* ------------------------------------------------------------------ */
@@ -39,7 +40,7 @@ function DefinitionRows({
       {items.map((item, index) => (
         <Reveal
           key={item.name}
-          delay={Math.min(index, 5) * 60}
+          delay={stagger(index)}
           className="grid gap-x-8 gap-y-2 border-b border-border py-6 md:grid-cols-[15rem_1fr] md:py-7"
         >
           <dt className="flex items-start gap-2.5">
@@ -255,7 +256,7 @@ function SectionBody({ section }: { section: Section }) {
       return (
         <ul className="grid list-none gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {section.images.map((image, index) => (
-            <Reveal as="li" key={image.src} delay={Math.min(index, 5) * 70}>
+            <Reveal as="li" key={image.src} delay={stagger(index)}>
               <ArchImage
                 image={image}
                 ratio="window"

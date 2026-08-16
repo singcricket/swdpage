@@ -49,6 +49,16 @@ pnpm lint     # ESLint
 - 아치(`arch` 유틸리티)는 건물의 반원 창에서 가져온 이 사이트의 시그니처입니다.
 - 한국어 조판: 본문 행간 1.85~1.95, `word-break: keep-all`, 본문 폭 46rem.
 
+스크롤 애니메이션 속도는 `:root` 의 토큰 세 개로만 조절합니다.
+
+```css
+--reveal-ease: cubic-bezier(0.33, 1, 0.68, 1); /* easeOutCubic */
+--reveal-duration: 1.1s;      /* 일반 요소 */
+--reveal-arch-duration: 1.6s; /* 히어로 아치 */
+```
+
+이징을 expo 계열(앞머리에 진행이 몰린 곡선)로 되돌리면 지속시간을 늘려도 «툭» 나타나는 인상이 남습니다. 항목 간 지연은 각 `Reveal` 의 `delay` prop 입니다.
+
 ## 배포 전 확인
 
 `lib/site.ts` 의 `site.url` 이 실제 도메인과 같은지 확인하세요. 이 값으로 `sitemap.xml`, canonical, OG 이미지의 절대 주소가 만들어집니다.

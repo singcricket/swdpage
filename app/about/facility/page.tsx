@@ -5,6 +5,7 @@ import { facility } from "@/lib/images";
 import { PageHero } from "@/components/site/blocks/page-hero";
 import { ArchImage } from "@/components/site/blocks/arch";
 import { Reveal } from "@/components/site/blocks/reveal";
+import { stagger } from "@/lib/motion";
 import { IndexRail } from "@/components/site/blocks/index-rail";
 import { SectionHeader } from "@/components/site/blocks/primitives";
 import { CtaBand } from "@/components/site/blocks/cta-band";
@@ -47,7 +48,7 @@ export default function FacilityPage() {
                   <Reveal
                     as="li"
                     key={space.id}
-                    delay={Math.min(index, 4) * 60}
+                    delay={stagger(index)}
                     className="border-t border-border pt-8"
                   >
                     <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1">

@@ -5,6 +5,7 @@ import { equipmentGroups, equipmentCount } from "@/lib/content/equipment";
 import { facility } from "@/lib/images";
 import { PageHero } from "@/components/site/blocks/page-hero";
 import { Reveal } from "@/components/site/blocks/reveal";
+import { stagger } from "@/lib/motion";
 import { IndexRail } from "@/components/site/blocks/index-rail";
 import { SectionHeader } from "@/components/site/blocks/primitives";
 import { CtaBand } from "@/components/site/blocks/cta-band";
@@ -46,7 +47,7 @@ export default function EquipmentPage() {
                   <Reveal
                     as="li"
                     key={item.name + item.model}
-                    delay={Math.min(index, 4) * 60}
+                    delay={stagger(index)}
                     className="grid gap-8 border-t border-border py-10 md:grid-cols-[minmax(0,14rem)_1fr] md:gap-12"
                   >
                     {/* 제품 사진은 흰 배경 위 컷이라 아치로 자르면 잘린 티가 난다.

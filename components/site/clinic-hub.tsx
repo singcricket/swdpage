@@ -5,6 +5,7 @@ import type { Img } from "@/lib/images";
 import { PageHero } from "./blocks/page-hero";
 import { ArchImage } from "./blocks/arch";
 import { Reveal } from "./blocks/reveal";
+import { stagger } from "@/lib/motion";
 import { Section, SectionHeader } from "./blocks/primitives";
 import { CtaBand } from "./blocks/cta-band";
 
@@ -67,7 +68,7 @@ export function ClinicHubLayout({
               <Reveal
                 as="li"
                 key={child.href}
-                delay={Math.min(index, 4) * 60}
+                delay={stagger(index)}
                 className="border-t border-border last:border-b"
               >
                 <Link

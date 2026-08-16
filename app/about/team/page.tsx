@@ -109,7 +109,7 @@ export default function TeamPage() {
       </Section>
 
       <CtaBand
-        title="어느 선생님께 보여드려야 할지 모르겠다면"
+        title="어느 선생님과 함께할지 모르겠다면"
         body="증상을 말씀해 주시면 담당 분야의 수의사에게 연결해 드립니다."
       />
     </article>

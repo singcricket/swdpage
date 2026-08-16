@@ -96,6 +96,13 @@
   /* 아치 — 건물의 반원 창 비율. 상단 두 반지름의 합이 너비를 넘으면
      브라우저가 각각 너비의 절반으로 스케일하므로 정확한 반원이 된다. */
   --arch-radius: 9999px;
+
+  /* 스크롤 리빌 속도. 여기 세 값만 바꾸면 사이트 전체 리듬이 바뀐다.
+     이징은 easeOutCubic. expo 계열(0.16, 1, 0.3, 1)은 진행이 앞머리에
+     몰려 있어서 지속시간을 늘려도 «툭» 나타나는 인상이 남는다. */
+  --reveal-ease: cubic-bezier(0.33, 1, 0.68, 1);
+  --reveal-duration: 1.1s;
+  --reveal-arch-duration: 1.6s;
 }
 
 .dark {
@@ -305,7 +312,8 @@
 @keyframes sw-rise {
   from {
     opacity: 0;
-    transform: translateY(18px);
+    /* 느린 곡선에서는 이동 거리가 짧으면 «움직였다»는 인상이 남지 않는다. */
+    transform: translateY(24px);
   }
   to {
     opacity: 1;
@@ -342,11 +350,11 @@
      적용되지 않는다. 그 사이 요소가 원래 상태(opacity 1)로 노출됐다가
      애니메이션이 시작되며 0으로 떨어져 깜빡인다. */
   .reveal[data-visible="true"] {
-    animation: sw-rise 0.75s cubic-bezier(0.16, 1, 0.3, 1) both;
+    animation: sw-rise var(--reveal-duration) var(--reveal-ease) both;
   }
 
   .reveal-arch[data-visible="true"] {
-    animation: sw-arch-open 1.1s cubic-bezier(0.16, 1, 0.3, 1) both;
+    animation: sw-arch-open var(--reveal-arch-duration) var(--reveal-ease) both;
   }
 }
 

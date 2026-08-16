@@ -15,10 +15,24 @@ import { cn } from "@/lib/utils";
 
 const kakao = channels.find((channel) => channel.key === "kakao");
 
-/** 현재 경로가 해당 섹션 안에 있는지. `/about` 은 `/about/team` 도 포함한다. */
+/**
+ * 현재 경로가 해당 «섹션 안»에 있는지. `/about` 은 `/about/team` 도 포함한다.
+ * 상위 메뉴를 활성으로 표시할 때만 쓴다.
+ */
 function isActive(pathname: string, href: string) {
   if (href === "/") return pathname === "/";
   return pathname === href || pathname.startsWith(`${href}/`);
+}
+
+/**
+ * 지금 보고 있는 바로 그 페이지인지.
+ *
+ * 드롭다운 항목에는 이쪽을 써야 한다. 접두사로 판정하면 `/about/team` 에
+ * 있을 때도 목록 맨 위의 `/about`(병원 소개)이 함께 선택된 것처럼 보인다.
+ * 같은 함정이 `/clinics/chronic`, `/clinics/surgery` 허브 항목에도 있다.
+ */
+function isCurrent(pathname: string, href: string) {
+  return pathname === href;
 }
 
 /** 그룹의 자식 링크 중 하나라도 현재 경로면 상위 메뉴를 활성으로 본다. */
@@ -116,6 +130,9 @@ function DesktopNav({ pathname }: { pathname: string }) {
               <NavigationMenu.Item key={group.href}>
                 <NavigationMenu.Link
                   render={<Link href={group.href} />}
+                  aria-current={
+                    isCurrent(pathname, group.href) ? "page" : undefined
+                  }
                   className={cn(triggerClass, active && triggerActiveClass)}
                 >
                   {group.label}
@@ -141,9 +158,12 @@ function DesktopNav({ pathname }: { pathname: string }) {
                     <li key={child.href}>
                       <NavigationMenu.Link
                         render={<Link href={child.href} />}
+                        aria-current={
+                          isCurrent(pathname, child.href) ? "page" : undefined
+                        }
                         className={cn(
                           "block rounded-sm px-3 py-2.5 no-underline transition-colors hover:bg-mist focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-ring",
-                          isActive(pathname, child.href) && "bg-mist",
+                          isCurrent(pathname, child.href) && "bg-mist",
                         )}
                       >
                         <span className="block font-serif text-[0.9375rem] leading-6 font-medium text-ink">
@@ -242,6 +262,9 @@ function MobileNav({ pathname }: { pathname: string }) {
                       key={group.href}
                       href={group.href}
                       onClick={close}
+                      aria-current={
+                        isCurrent(pathname, group.href) ? "page" : undefined
+                      }
                       className={cn(
                         "rounded-sm px-3 py-3 font-serif text-base font-medium transition-colors hover:bg-mist",
                         isActive(pathname, group.href)
@@ -283,9 +306,14 @@ function MobileNav({ pathname }: { pathname: string }) {
                             <Link
                               href={child.href}
                               onClick={close}
+                              aria-current={
+                                isCurrent(pathname, child.href)
+                                  ? "page"
+                                  : undefined
+                              }
                               className={cn(
                                 "block rounded-sm border-l border-border py-2 pl-4 text-sm transition-colors hover:border-teal hover:text-ink",
-                                isActive(pathname, child.href)
+                                isCurrent(pathname, child.href)
                                   ? "border-teal text-teal-deep"
                                   : "text-muted-foreground",
                               )}

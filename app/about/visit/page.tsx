@@ -49,13 +49,22 @@ export default function VisitPage() {
             <SectionHeader eyebrow="진료시간" title="365일 연중무휴" />
 
             <dl className="mt-10 border-t border-border">
-              <InfoRow icon={<Clock className="size-4 text-teal" aria-hidden />} term="평일 · 주말 · 공휴일">
+              <InfoRow
+                icon={<Clock className="size-4 text-teal" aria-hidden />}
+                term="365일"
+              >
                 {hours.weekday}
               </InfoRow>
-              <InfoRow icon={<Clock className="size-4 text-teal" aria-hidden />} term="점심시간">
+              <InfoRow
+                icon={<Clock className="size-4 text-teal" aria-hidden />}
+                term="점심시간"
+              >
                 {hours.lunch}
               </InfoRow>
-              <InfoRow icon={<Clock className="size-4 text-teal" aria-hidden />} term="진료 접수 마감">
+              <InfoRow
+                icon={<Clock className="size-4 text-teal" aria-hidden />}
+                term="진료 접수 마감"
+              >
                 {hours.lastReception}
               </InfoRow>
             </dl>
@@ -120,8 +129,8 @@ export default function VisitPage() {
             {/* 온라인 예약 창구는 아직 없다. 링크 없는 버튼을 두는 대신
                 지금 가능한 방법이 무엇인지 말한다. */}
             <Note className="mt-8">
-              온라인 예약 페이지는 아직 없습니다. 예약은 전화나 카카오톡
-              채널로 접수해 드립니다.
+              온라인 예약 페이지는 아직 없습니다. 예약은 전화나 카카오톡 채널로
+              접수해 드립니다.
             </Note>
           </div>
         </div>
@@ -223,7 +232,10 @@ export default function VisitPage() {
 }
 
 const arrivalShots = [
-  { image: facility.exterior[0], caption: "건물 정면 — 2층이 동물의료센터입니다" },
+  {
+    image: facility.exterior[0],
+    caption: "건물 정면 — 2층이 동물의료센터입니다",
+  },
   { image: facility.entrance[0], caption: "2층 입구" },
   {
     image: facility.entranceInfo[0],

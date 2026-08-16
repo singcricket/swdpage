@@ -4,6 +4,7 @@ import { ArrowUpRight } from "lucide-react";
 import { services } from "@/lib/content/services";
 import { ArchImage } from "./arch";
 import { Reveal } from "./reveal";
+import { stagger } from "@/lib/motion";
 
 /**
  * 진료 분야 입구.
@@ -15,7 +16,7 @@ export function ServiceGrid() {
   return (
     <ul className="grid list-none gap-x-8 gap-y-12 sm:grid-cols-2 lg:grid-cols-3">
       {services.map((service, index) => (
-        <Reveal as="li" key={service.href} delay={Math.min(index, 5) * 70}>
+        <Reveal as="li" key={service.href} delay={stagger(index)}>
           <Link
             href={service.href}
             className="group flex h-full flex-col gap-5 rounded-sm focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-ring"
