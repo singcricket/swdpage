@@ -1,17 +1,17 @@
 "use client";
 
-import * as React from "react";
+import { Accordion } from "@base-ui/react/accordion";
+import { Dialog } from "@base-ui/react/dialog";
+import { NavigationMenu } from "@base-ui/react/navigation-menu";
+import { ChevronDown, Menu, MessageCircle, Phone, X } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { NavigationMenu } from "@base-ui/react/navigation-menu";
-import { Dialog } from "@base-ui/react/dialog";
-import { Accordion } from "@base-ui/react/accordion";
-import { ChevronDown, Menu, MessageCircle, Phone, X } from "lucide-react";
+import * as React from "react";
 
-import { cn } from "@/lib/utils";
-import { contact, hours, nav, channels, type NavGroup } from "@/lib/site";
 import { brand } from "@/lib/images";
+import { channels, contact, hours, nav, type NavGroup } from "@/lib/site";
+import { cn } from "@/lib/utils";
 
 const kakao = channels.find((channel) => channel.key === "kakao");
 
@@ -136,7 +136,7 @@ function DesktopNav({ pathname }: { pathname: string }) {
               </NavigationMenu.Trigger>
 
               <NavigationMenu.Content className={contentClass}>
-                <ul className="m-0 flex w-[22rem] list-none flex-col p-1.5">
+                <ul className="m-0 flex w-88 list-none flex-col p-1.5">
                   {group.children.map((child) => (
                     <li key={child.href}>
                       <NavigationMenu.Link
@@ -172,7 +172,7 @@ function DesktopNav({ pathname }: { pathname: string }) {
           // 팝업은 portal 로 body 에 붙으므로 Root 의 `hidden lg:block` 이
           // 닿지 않는다. 데스크톱에서 메뉴를 연 채 창을 좁히면 모바일 화면에
           // 드롭다운이 남는다. 여기서 직접 숨긴다.
-          className="z-50 h-[var(--positioner-height)] w-[var(--positioner-width)] max-w-[var(--available-width)] transition-[top,left,right,bottom] duration-[var(--duration)] ease-[var(--easing)] before:absolute before:inset-x-0 before:-top-3.5 before:h-3.5 before:content-[''] max-lg:hidden data-instant:transition-none"
+          className="z-50 h-(--positioner-height) w-(--positioner-width) max-w-(--available-width) transition-[top,left,right,bottom] duration-(--duration) ease-(--easing) before:absolute before:inset-x-0 before:-top-3.5 before:h-3.5 before:content-[''] max-lg:hidden data-instant:transition-none"
           style={
             {
               "--duration": "0.3s",
@@ -180,7 +180,7 @@ function DesktopNav({ pathname }: { pathname: string }) {
             } as React.CSSProperties
           }
         >
-          <NavigationMenu.Popup className="relative h-[var(--popup-height)] w-[var(--popup-width)] origin-[var(--transform-origin)] overflow-hidden rounded-md border border-border bg-popover shadow-[0_18px_50px_-24px_rgb(22_40_60/0.35)] transition-[opacity,transform,width,height] duration-[var(--duration)] ease-[var(--easing)] data-ending-style:scale-[0.98] data-ending-style:opacity-0 data-starting-style:scale-[0.98] data-starting-style:opacity-0">
+          <NavigationMenu.Popup className="relative h-(--popup-height) w-(--popup-width) origin-(--transform-origin) overflow-hidden rounded-md border border-border bg-popover shadow-[0_18px_50px_-24px_rgb(22_40_60/0.35)] transition-[opacity,transform,width,height] duration-(--duration) ease-(--easing) data-ending-style:scale-[0.98] data-ending-style:opacity-0 data-starting-style:scale-[0.98] data-starting-style:opacity-0">
             <NavigationMenu.Viewport className="relative h-full w-full overflow-hidden" />
           </NavigationMenu.Popup>
         </NavigationMenu.Positioner>
@@ -276,7 +276,7 @@ function MobileNav({ pathname }: { pathname: string }) {
                         />
                       </Accordion.Trigger>
                     </Accordion.Header>
-                    <Accordion.Panel className="h-[var(--accordion-panel-height)] overflow-hidden transition-[height] duration-250 ease-out data-ending-style:h-0 data-starting-style:h-0">
+                    <Accordion.Panel className="h-(--accordion-panel-height) overflow-hidden transition-[height] duration-250 ease-out data-ending-style:h-0 data-starting-style:h-0">
                       <ul className="flex list-none flex-col pb-2 pl-3">
                         {group.children.map((child) => (
                           <li key={child.href}>
