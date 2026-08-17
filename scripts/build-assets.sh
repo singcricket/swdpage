@@ -111,5 +111,31 @@ sips -Z 1000 /tmp/_routemap.png --out "$OUT/brand/route-map.png" >/dev/null 2>&1
 rm -f /tmp/_routemap.png
 echo "brand: $(ls $OUT/brand | wc -l | tr -d ' ') files"
 
+# ---- 브라우저 아이콘 ----
+# 파비콘은 심볼 마크(가로 약 3:1)를 정사각으로 여백만 채워 넣는다. 로고 전체
+# 캔버스(logo1.png)를 쓰면 원본에 이미 들어 있는 여백까지 더해져 마크가 더
+# 작아진다. app/icon.png 는 큰 앱 아이콘이라 여백이 있는 편이 나아서 그대로 둔다.
+ICO_TMP=$(mktemp -d)
+for s in 16 32 48 64; do
+  ffmpeg -y -loglevel error -i "$OUT/brand/symbol.png" \
+    -vf "scale=${s}:-1:flags=lanczos,pad=${s}:${s}:0:(oh-ih)/2:color=0x00000000,format=rgba" \
+    -frames:v 1 "$ICO_TMP/$s.png"
+done
+python3 - "$ICO_TMP" "$ROOT/app/favicon.ico" <<'PY'
+import struct, sys, pathlib
+tmp, dest = pathlib.Path(sys.argv[1]), pathlib.Path(sys.argv[2])
+sizes = [16, 32, 48, 64]
+pngs = [(tmp / f"{s}.png").read_bytes() for s in sizes]
+head = struct.pack("<HHH", 0, 1, len(sizes))
+offset, entries, blobs = 6 + 16 * len(sizes), b"", b""
+for s, data in zip(sizes, pngs):
+    entries += struct.pack("<BBBBHHII", s, s, 0, 0, 1, 32, len(data), offset)
+    offset += len(data)
+    blobs += data
+dest.write_bytes(head + entries + blobs)
+print(f"favicon.ico: {dest.stat().st_size} bytes, {len(sizes)} sizes")
+PY
+rm -rf "$ICO_TMP"
+
 echo "---"
 echo "total: $(find $OUT -type f | wc -l | tr -d ' ') files, $(du -sh $OUT | cut -f1)"
