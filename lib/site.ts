@@ -157,7 +157,7 @@ export const nav: NavGroup[] = [
     href: "/clinics/chronic",
     children: [
       {
-        label: "만성질환 클리닉",
+        label: "만성질환 클리닉 소개",
         href: "/clinics/chronic",
         blurb: "담당 수의사가 처음부터 끝까지 봅니다",
       },
@@ -197,7 +197,7 @@ export const nav: NavGroup[] = [
     href: "/clinics/surgery",
     children: [
       {
-        label: "외과 센터",
+        label: "외과 센터 소개",
         href: "/clinics/surgery",
         blurb: "수술은 쉽게 권하지 않습니다",
       },

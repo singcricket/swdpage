@@ -3,7 +3,7 @@
 import { Accordion } from "@base-ui/react/accordion";
 import { Dialog } from "@base-ui/react/dialog";
 import { NavigationMenu } from "@base-ui/react/navigation-menu";
-import { ChevronDown, Menu, MessageCircle, Phone, X } from "lucide-react";
+import { ArrowRight, ChevronDown, Menu, MessageCircle, Phone, X } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -141,6 +141,13 @@ function DesktopNav({ pathname }: { pathname: string }) {
             );
           }
 
+          const overviewItem = group.children.find(
+            (child) => child.href === group.href && child.label.includes("소개"),
+          );
+          const subItems = group.children.filter(
+            (child) => child !== overviewItem,
+          );
+
           return (
             <NavigationMenu.Item key={group.href}>
               <NavigationMenu.Trigger
@@ -153,31 +160,74 @@ function DesktopNav({ pathname }: { pathname: string }) {
               </NavigationMenu.Trigger>
 
               <NavigationMenu.Content className={contentClass}>
-                <ul className="m-0 flex w-88 list-none flex-col p-1.5">
-                  {group.children.map((child) => (
-                    <li key={child.href}>
+                <div className="m-0 flex w-88 flex-col p-2">
+                  {overviewItem ? (
+                    <div className="mb-2 border-b border-border/60 pb-2">
                       <NavigationMenu.Link
-                        render={<Link href={child.href} />}
+                        render={<Link href={overviewItem.href} />}
                         aria-current={
-                          isCurrent(pathname, child.href) ? "page" : undefined
+                          isCurrent(pathname, overviewItem.href) ? "page" : undefined
                         }
                         className={cn(
-                          "block rounded-sm px-3 py-2.5 no-underline transition-colors hover:bg-mist focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-ring",
-                          isCurrent(pathname, child.href) && "bg-mist",
+                          "group/overview flex items-center justify-between rounded-md bg-mist/70 p-3 no-underline transition-colors hover:bg-mist focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-ring",
+                          isCurrent(pathname, overviewItem.href) && "bg-mist ring-1 ring-teal/30",
                         )}
                       >
-                        <span className="block font-serif text-[0.9375rem] leading-6 font-medium text-ink">
-                          {child.label}
-                        </span>
-                        {child.blurb ? (
-                          <span className="mt-0.5 block text-[0.8125rem] leading-5 text-muted-foreground">
-                            {child.blurb}
-                          </span>
-                        ) : null}
+                        <div className="space-y-0.5">
+                          <div className="flex items-center gap-1.5">
+                            <span className="font-serif text-[0.9375rem] font-semibold leading-5 text-teal-deep">
+                              {overviewItem.label}
+                            </span>
+                            <span className="rounded bg-teal/10 px-1.5 py-0.5 text-[0.7rem] font-medium text-teal-deep">
+                              개요
+                            </span>
+                          </div>
+                          {overviewItem.blurb ? (
+                            <span className="block text-[0.8125rem] leading-5 text-muted-foreground">
+                              {overviewItem.blurb}
+                            </span>
+                          ) : null}
+                        </div>
+                        <ArrowRight className="size-4 shrink-0 text-muted-foreground transition-transform group-hover/overview:translate-x-0.5 group-hover/overview:text-teal-deep" />
                       </NavigationMenu.Link>
-                    </li>
-                  ))}
-                </ul>
+                    </div>
+                  ) : null}
+
+                  {subItems.length > 0 ? (
+                    <div>
+                      {overviewItem ? (
+                        <div className="px-3 pt-1 pb-1.5 text-[0.75rem] font-semibold text-muted-foreground/80">
+                          세부 내용
+                        </div>
+                      ) : null}
+                      <ul className="m-0 flex list-none flex-col p-0">
+                        {subItems.map((child) => (
+                          <li key={child.href}>
+                            <NavigationMenu.Link
+                              render={<Link href={child.href} />}
+                              aria-current={
+                                isCurrent(pathname, child.href) ? "page" : undefined
+                              }
+                              className={cn(
+                                "block rounded-sm px-3 py-2 no-underline transition-colors hover:bg-mist focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-ring",
+                                isCurrent(pathname, child.href) && "bg-mist",
+                              )}
+                            >
+                              <span className="block font-serif text-[0.9375rem] leading-6 font-medium text-ink">
+                                {child.label}
+                              </span>
+                              {child.blurb ? (
+                                <span className="mt-0.5 block text-[0.8125rem] leading-5 text-muted-foreground">
+                                  {child.blurb}
+                                </span>
+                              ) : null}
+                            </NavigationMenu.Link>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  ) : null}
+                </div>
               </NavigationMenu.Content>
             </NavigationMenu.Item>
           );
@@ -189,9 +239,6 @@ function DesktopNav({ pathname }: { pathname: string }) {
           sideOffset={14}
           collisionPadding={{ top: 5, bottom: 5, left: 20, right: 20 }}
           collisionAvoidance={{ side: "none" }}
-          // 팝업은 portal 로 body 에 붙으므로 Root 의 `hidden lg:block` 이
-          // 닿지 않는다. 데스크톱에서 메뉴를 연 채 창을 좁히면 모바일 화면에
-          // 드롭다운이 남는다. 여기서 직접 숨긴다.
           className="z-50 h-(--positioner-height) w-(--positioner-width) max-w-(--available-width) transition-[top,left,right,bottom] duration-(--duration) ease-(--easing) before:absolute before:inset-x-0 before:-top-3.5 before:h-3.5 before:content-[''] max-lg:hidden data-instant:transition-none"
           style={
             {
@@ -225,8 +272,6 @@ const contentClass =
 
 function MobileNav({ pathname }: { pathname: string }) {
   const [open, setOpen] = React.useState(false);
-  // 링크를 누르면 라우트가 바뀌므로 그 자리에서 닫는다.
-  // (경로 변화를 effect 로 감시하면 불필요한 연쇄 렌더가 생긴다.)
   const close = React.useCallback(() => setOpen(false), []);
 
   return (
@@ -277,6 +322,13 @@ function MobileNav({ pathname }: { pathname: string }) {
                   );
                 }
 
+                const overviewItem = group.children.find(
+                  (child) => child.href === group.href && child.label.includes("개요"),
+                );
+                const subItems = group.children.filter(
+                  (child) => child !== overviewItem,
+                );
+
                 return (
                   <Accordion.Item
                     key={group.href}
@@ -300,29 +352,56 @@ function MobileNav({ pathname }: { pathname: string }) {
                       </Accordion.Trigger>
                     </Accordion.Header>
                     <Accordion.Panel className="h-(--accordion-panel-height) overflow-hidden transition-[height] duration-250 ease-out data-ending-style:h-0 data-starting-style:h-0">
-                      <ul className="flex list-none flex-col pb-2 pl-3">
-                        {group.children.map((child) => (
-                          <li key={child.href}>
-                            <Link
-                              href={child.href}
-                              onClick={close}
-                              aria-current={
-                                isCurrent(pathname, child.href)
-                                  ? "page"
-                                  : undefined
-                              }
-                              className={cn(
-                                "block rounded-sm border-l border-border py-2 pl-4 text-sm transition-colors hover:border-teal hover:text-ink",
-                                isCurrent(pathname, child.href)
-                                  ? "border-teal text-teal-deep"
-                                  : "text-muted-foreground",
-                              )}
-                            >
-                              {child.label}
-                            </Link>
-                          </li>
-                        ))}
-                      </ul>
+                      <div className="space-y-2 pb-3 pl-3 pr-1">
+                        {overviewItem ? (
+                          <Link
+                            href={overviewItem.href}
+                            onClick={close}
+                            aria-current={
+                              isCurrent(pathname, overviewItem.href)
+                                ? "page"
+                                : undefined
+                            }
+                            className={cn(
+                              "flex items-center justify-between rounded bg-mist/70 p-2.5 text-sm transition-colors hover:bg-mist",
+                              isCurrent(pathname, overviewItem.href)
+                                ? "bg-mist font-medium text-teal-deep ring-1 ring-teal/30"
+                                : "text-ink",
+                            )}
+                          >
+                            <span className="font-serif font-medium">{overviewItem.label}</span>
+                            <span className="rounded bg-teal/10 px-1.5 py-0.5 text-[0.7rem] font-medium text-teal-deep">
+                              개요
+                            </span>
+                          </Link>
+                        ) : null}
+
+                        {subItems.length > 0 ? (
+                          <ul className="flex list-none flex-col pt-1">
+                            {subItems.map((child) => (
+                              <li key={child.href}>
+                                <Link
+                                  href={child.href}
+                                  onClick={close}
+                                  aria-current={
+                                    isCurrent(pathname, child.href)
+                                      ? "page"
+                                      : undefined
+                                  }
+                                  className={cn(
+                                    "block rounded-sm border-l border-border py-2 pl-4 text-sm transition-colors hover:border-teal hover:text-ink",
+                                    isCurrent(pathname, child.href)
+                                      ? "border-teal font-medium text-teal-deep"
+                                      : "text-muted-foreground",
+                                  )}
+                                >
+                                  {child.label}
+                                </Link>
+                              </li>
+                            ))}
+                          </ul>
+                        ) : null}
+                      </div>
                     </Accordion.Panel>
                   </Accordion.Item>
                 );
@@ -362,3 +441,4 @@ function MobileNav({ pathname }: { pathname: string }) {
     </Dialog.Root>
   );
 }
+
