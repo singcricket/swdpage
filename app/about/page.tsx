@@ -86,7 +86,7 @@ export default function AboutPage() {
         <div className="shell">
           <SectionHeader
             eyebrow="우리가 지키는 것"
-            title="크지 않은 병원이 신뢰를 만드는 방법"
+            title="신원당이 신뢰를 만드는 방법"
           />
 
           <ul className="mt-12 grid list-none gap-px overflow-hidden rounded-md border border-border bg-border md:grid-cols-3">
@@ -215,7 +215,7 @@ export default function AboutPage() {
 const principles = [
   {
     title: "쉽게 넘기지 않습니다",
-    body: "‘큰 병원에 가보세요’라는 말로 시작하지 않습니다. 작은 불안도 함께 들여다보고, 지금 할 수 있는 것을 먼저 찾습니다.",
+    body: "작은 불안도 함께 들여다보고, 지금 할 수 있는 것을 먼저 찾습니다.",
   },
   {
     title: "공부를 당연하게 여깁니다",
