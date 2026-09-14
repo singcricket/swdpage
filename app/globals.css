@@ -221,7 +221,7 @@
   /* 눈썹 라벨·검사 코드 — 데이터를 재는 자리 */
   .type-label {
     font-family: var(--font-mono);
-    font-size: 0.6875rem;
+    font-size: 1rem;
     font-weight: 500;
     line-height: 1.5;
     letter-spacing: 0.14em;
