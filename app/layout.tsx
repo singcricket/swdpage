@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { IBM_Plex_Sans_KR, IBM_Plex_Mono, Noto_Serif_KR } from "next/font/google";
+import { IBM_Plex_Sans_KR, IBM_Plex_Mono, Hahmlet } from "next/font/google";
 
 import "./globals.css";
 import { cn } from "@/lib/utils";
@@ -15,11 +15,11 @@ const plexKr = IBM_Plex_Sans_KR({
   display: "swap",
 });
 
-/** 헤드라인·인용 — 병원이 말하는 자리. 명조가 받는다. */
-const notoSerifKr = Noto_Serif_KR({
+/** 헤드라인·인용 — 병원이 말하는 자리. 세리프가 받는다. */
+const hahmlet = Hahmlet({
   subsets: ["latin"],
   weight: ["400", "500", "600"],
-  variable: "--font-noto-serif-kr",
+  variable: "--font-hahmlet",
   display: "swap",
 });
 
@@ -111,7 +111,7 @@ export default function RootLayout({
       className={cn(
         "h-full antialiased",
         plexKr.variable,
-        notoSerifKr.variable,
+        hahmlet.variable,
         plexMono.variable,
       )}
     >
