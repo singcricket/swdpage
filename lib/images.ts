@@ -11,6 +11,9 @@ export type Img = {
   src: string;
   /** 스크린리더·SEO용 대체 텍스트. 비워두지 말 것 */
   alt: string;
+  /** 원본 픽셀 치수. RectImage의 ratio="auto"처럼 크롭 없이 원본 비율대로 배치할 때 필요 */
+  width?: number;
+  height?: number;
 };
 
 const f = (name: string, alt: string): Img => ({
@@ -71,20 +74,28 @@ export const brand = {
 
 export const team = {
   choiYunho: {
-    src: "/images/team/choi-yunho.jpg",
+    src: "/images/team/choi-yunho2.png",
     alt: "대표원장 최윤호",
+    width: 606,
+    height: 900,
   },
   kimBangchang: {
-    src: "/images/team/kim-bangchang.jpg",
+    src: "/images/team/kim-bangchang3.png",
     alt: "원장 김방창",
+    width: 606,
+    height: 900,
   },
   leeNayoung: {
-    src: "/images/team/lee-nayoung.jpg",
+    src: "/images/team/lee-nayoung2.png",
     alt: "부원장 이나영",
+    width: 606,
+    height: 900,
   },
   kimMincheol: {
-    src: "/images/team/kim-mincheol.jpg",
+    src: "/images/team/kim-mincheol.png",
     alt: "진료과장 김민철",
+    width: 606,
+    height: 900,
   },
 } satisfies Record<string, Img>;
 

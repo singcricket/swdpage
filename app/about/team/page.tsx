@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 import { vets } from "@/lib/content/team";
 import { facility } from "@/lib/images";
 import { PageHero } from "@/components/site/blocks/page-hero";
-import { ArchImage } from "@/components/site/blocks/arch";
+import { ArchImage, RectImage } from "@/components/site/blocks/arch";
 import { Reveal } from "@/components/site/blocks/reveal";
 import {
   Section,
@@ -42,9 +42,9 @@ export default function TeamPage() {
                 className="grid gap-8 border-t border-border pt-10 md:grid-cols-[minmax(0,15rem)_1fr] md:gap-14"
               >
                 <div className="w-[12rem] justify-self-center md:w-full md:justify-self-start">
-                  <ArchImage
+                  <RectImage
                     image={vet.portrait}
-                    ratio="window"
+                    ratio="auto"
                     sizes="(min-width: 768px) 15rem, 12rem"
                   />
                 </div>
