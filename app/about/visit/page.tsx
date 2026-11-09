@@ -13,7 +13,7 @@ import {
 import { contact, hours, directions, site, channels } from "@/lib/site";
 import { facility, brand } from "@/lib/images";
 import { PageHero } from "@/components/site/blocks/page-hero";
-import { ArchImage } from "@/components/site/blocks/arch";
+import { RectImage } from "@/components/site/blocks/arch";
 import {
   Section,
   SectionHeader,
@@ -228,7 +228,7 @@ export default function VisitPage() {
           <ul className="mt-12 grid list-none gap-8 sm:grid-cols-3">
             {arrivalShots.map((shot) => (
               <li key={shot.caption}>
-                <ArchImage
+                <RectImage
                   image={shot.image}
                   ratio="window"
                   caption={shot.caption}

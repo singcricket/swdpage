@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 import { vets } from "@/lib/content/team";
 import { facility } from "@/lib/images";
 import { PageHero } from "@/components/site/blocks/page-hero";
-import { ArchImage, RectImage } from "@/components/site/blocks/arch";
+import { RectImage } from "@/components/site/blocks/arch";
 import { Reveal } from "@/components/site/blocks/reveal";
 import {
   Section,
@@ -93,7 +93,7 @@ export default function TeamPage() {
 
       <Section tone="mist" tight>
         <div className="shell grid items-center gap-10 lg:grid-cols-2 lg:gap-16">
-          <ArchImage
+          <RectImage
             image={facility.certificates[0]}
             ratio="wide"
             sizes="(min-width: 1024px) 34rem, 90vw"

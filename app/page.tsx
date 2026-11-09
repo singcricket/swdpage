@@ -5,7 +5,7 @@ import { contact, hours, directions, credentials } from "@/lib/site";
 import { greeting, mission } from "@/lib/content/about";
 import { vets } from "@/lib/content/team";
 import { facility } from "@/lib/images";
-import { ArchImage } from "@/components/site/blocks/arch";
+import { ArchImage, RectImage } from "@/components/site/blocks/arch";
 import { Reveal } from "@/components/site/blocks/reveal";
 import { stagger } from "@/lib/motion";
 import {
@@ -183,7 +183,7 @@ function Team() {
           lede="따뜻한 손길로 맞이하고, 날카로운 눈으로 진료합니다."
         />
 
-        <ul className="mt-14 grid list-none gap-x-8 gap-y-14 sm:grid-cols-2 lg:grid-cols-4">
+        <ul className="mt-14 grid list-none grid-cols-2 gap-x-4 gap-y-10 sm:gap-x-8 sm:gap-y-14 lg:grid-cols-4">
           {vets.map((vet, index) => (
             <Reveal as="li" key={vet.slug} delay={stagger(index)}>
               <VetCard vet={vet} />
@@ -225,15 +225,15 @@ function FacilityPreview() {
           lede="개와 고양이의 동선을 나누고, 설명을 듣는 자리와 처치를 받는 자리를 따로 두었습니다."
         />
 
-        <ul className="mt-14 grid list-none gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4">
+        <ul className="mt-14 grid list-none grid-cols-2 gap-x-4 gap-y-7 sm:gap-x-6 sm:gap-y-10 lg:grid-cols-4">
           {shots.map((shot, index) => (
             <Reveal as="li" key={shot.label} delay={stagger(index)}>
-              <ArchImage
+              <RectImage
                 image={shot.image}
                 ratio="window"
-                sizes="(min-width: 1024px) 17rem, (min-width: 640px) 45vw, 88vw"
+                sizes="(min-width: 1024px) 17rem, 45vw"
               />
-              <p className="type-label mt-4 text-muted-foreground">
+              <p className="type-label mt-3 text-[0.8125rem] text-muted-foreground sm:mt-4 sm:text-[0.9375rem]">
                 {shot.label}
               </p>
             </Reveal>
@@ -276,7 +276,7 @@ function Visit() {
         <div>
           <SectionHeader
             eyebrow="진료시간 · 오시는 길"
-            title="예약하시면 대기 시간은 줄고, 진료 시간은 늘어납니다"
+            title="원당역에서 걸어서 3분, 365일 문을 엽니다"
           />
 
           <dl className="mt-10 border-t border-border">
@@ -319,7 +319,7 @@ function Visit() {
         </div>
 
         <Reveal className="w-full">
-          <ArchImage
+          <RectImage
             image={facility.exterior[0]}
             ratio="wide"
             caption="원당역 6번 출구에서 도보 3분. 2층이 동물의료센터입니다."

@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 import { spaceGroups } from "@/lib/content/spaces";
 import { facility } from "@/lib/images";
 import { PageHero } from "@/components/site/blocks/page-hero";
-import { ArchImage } from "@/components/site/blocks/arch";
+import { RectImage } from "@/components/site/blocks/arch";
 import { Reveal } from "@/components/site/blocks/reveal";
 import { stagger } from "@/lib/motion";
 import { IndexRail } from "@/components/site/blocks/index-rail";
@@ -65,7 +65,7 @@ export default function FacilityPage() {
                     <ul className="mt-7 grid list-none gap-6 sm:grid-cols-2">
                       {space.images.map((image, imageIndex) => (
                         <li key={image.src}>
-                          <ArchImage
+                          <RectImage
                             image={image}
                             ratio="wide"
                             sizes="(min-width: 640px) 24rem, 88vw"

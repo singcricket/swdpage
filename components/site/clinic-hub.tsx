@@ -3,7 +3,7 @@ import { ArrowUpRight } from "lucide-react";
 
 import type { Img } from "@/lib/images";
 import { PageHero } from "./blocks/page-hero";
-import { ArchImage } from "./blocks/arch";
+import { RectImage } from "./blocks/arch";
 import { Reveal } from "./blocks/reveal";
 import { stagger } from "@/lib/motion";
 import { Section, SectionHeader } from "./blocks/primitives";
@@ -83,7 +83,7 @@ export function ClinicHubLayout({
                   href={child.href}
                   className="group grid items-center gap-8 py-9 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-ring md:grid-cols-[minmax(0,13rem)_1fr] md:gap-12"
                 >
-                  <ArchImage
+                  <RectImage
                     image={child.image}
                     ratio="wide"
                     className="transition-opacity group-hover:opacity-90"

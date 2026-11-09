@@ -218,14 +218,28 @@
     text-wrap: pretty;
   }
 
-  /* 눈썹 라벨·검사 코드 — 데이터를 재는 자리 */
+  /* 눈썹 라벨·칩·운영 정보.
+     IBM Plex Mono 에는 한글 글리프가 없어 한글이 시스템 글꼴(맥: Apple SD Gothic Neo,
+     윈도: 맑은 고딕)로 대체되고, 넓은 자간까지 더해져 "진 료 분 야"처럼 흩어졌다.
+     본문 글꼴로 바꾸고 숫자만 고정폭 숫자(tnum)로 맞춘다. */
   .type-label {
-    font-family: var(--font-mono);
-    font-size: 1rem;
+    font-family: var(--font-sans);
+    font-size: 0.9375rem;
     font-weight: 500;
     line-height: 1.5;
-    letter-spacing: 0.14em;
+    letter-spacing: 0.02em;
+    font-variant-numeric: tabular-nums;
     text-transform: uppercase;
+    text-wrap: balance;
+  }
+
+  /* 질환·검사 약어(HCM, CKD …) — 영문만 들어가는 자리라 고정폭을 남긴다 */
+  .type-code {
+    font-family: var(--font-mono);
+    font-size: 0.8125rem;
+    font-weight: 500;
+    line-height: 1.5;
+    letter-spacing: 0.08em;
   }
 
   /* 인용 — 병원의 목소리 */

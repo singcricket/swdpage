@@ -7,7 +7,7 @@ import { greeting, mission, motto } from "@/lib/content/about";
 import { vets } from "@/lib/content/team";
 import { facility, brand } from "@/lib/images";
 import { PageHero } from "@/components/site/blocks/page-hero";
-import { ArchImage } from "@/components/site/blocks/arch";
+import { ArchImage, RectImage } from "@/components/site/blocks/arch";
 import { Reveal } from "@/components/site/blocks/reveal";
 import { stagger } from "@/lib/motion";
 import {
@@ -134,7 +134,7 @@ export default function AboutPage() {
             title="따뜻한 손길로 맞이하고, 날카로운 눈으로 진료합니다"
           />
 
-          <ul className="mt-14 grid list-none gap-x-8 gap-y-14 sm:grid-cols-2 lg:grid-cols-4">
+          <ul className="mt-14 grid list-none grid-cols-2 gap-x-4 gap-y-10 sm:gap-x-8 sm:gap-y-14 lg:grid-cols-4">
             {vets.map((vet, index) => (
               <Reveal as="li" key={vet.slug} delay={stagger(index)}>
                 <VetCard vet={vet} />
@@ -158,7 +158,7 @@ export default function AboutPage() {
       {/* 건물 */}
       <Section tone="mist" tight>
         <div className="shell grid items-center gap-10 lg:grid-cols-2 lg:gap-16">
-          <ArchImage
+          <RectImage
             image={brand.buildingNight}
             ratio="wide"
             sizes="(min-width: 1024px) 34rem, 90vw"

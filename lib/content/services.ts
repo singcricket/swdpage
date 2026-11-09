@@ -49,7 +49,7 @@ export const services: Service[] = [
   {
     href: "/clinics/dental",
     title: "치과 병원",
-    claim: "말 못 하는 아이의 고통, 더 이상 미루지 마세요",
+    claim: "아파도 말하지 못하니까, 입안부터 살핍니다",
     scope: "스케일링 · 치주 치료 · 발치 · 치과 전용 방사선",
     image: facility.dentalRoom[0],
   },

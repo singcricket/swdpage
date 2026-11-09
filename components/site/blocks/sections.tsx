@@ -2,7 +2,7 @@ import * as React from "react";
 
 import { cn } from "@/lib/utils";
 import type { Section } from "@/lib/content/types";
-import { ArchImage, RectImage } from "./arch";
+import { RectImage } from "./arch";
 import { EquipmentGrid } from "./equipment-grid";
 import { Reveal } from "./reveal";
 import { stagger } from "@/lib/motion";
@@ -49,7 +49,7 @@ function DefinitionRows({
             <span>
               <span className="type-title block text-ink">{item.name}</span>
               {item.code ? (
-                <span className="type-label mt-1.5 block text-muted-foreground">
+                <span className="type-code mt-1.5 block text-muted-foreground">
                   {item.code}
                 </span>
               ) : null}
@@ -274,7 +274,7 @@ function SectionBody({ section }: { section: Section }) {
         <ul className="grid list-none gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {section.images.map((image, index) => (
             <Reveal as="li" key={image.src} delay={stagger(index)}>
-              <ArchImage
+              <RectImage
                 image={image}
                 ratio="window"
                 caption={image.alt}
