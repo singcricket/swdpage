@@ -24,7 +24,7 @@
   --color-foreground: var(--foreground);
 
   --font-sans: var(--font-plex-kr);
-  --font-serif: var(--font-hahmlet);
+  --font-serif: var(--font-maruburi);
   --font-mono: var(--font-plex-mono);
 
   /* 브랜드 */
@@ -169,7 +169,7 @@
 
 /* ===========================================================================
    타이포그래피
-   세리프(Noto Serif KR)는 병원이 말하는 자리에,
+   세리프(마루 부리)는 병원이 말하는 자리에,
    산세리프(IBM Plex Sans KR)는 재는 자리에.
 =========================================================================== */
 
@@ -177,7 +177,7 @@
   /* 히어로 헤드라인 */
   .type-display {
     font-family: var(--font-serif);
-    font-weight: 500;
+    font-weight: 600;
     font-size: clamp(2rem, 1.35rem + 2.9vw, 3.75rem);
     line-height: 1.4;
     letter-spacing: -0.025em;
@@ -187,7 +187,7 @@
   /* 섹션 제목 */
   .type-headline {
     font-family: var(--font-serif);
-    font-weight: 500;
+    font-weight: 600;
     font-size: clamp(1.5rem, 1.22rem + 1.25vw, 2.25rem);
     line-height: 1.5;
     letter-spacing: -0.02em;
@@ -197,7 +197,7 @@
   /* 카드·항목 제목 */
   .type-title {
     font-family: var(--font-serif);
-    font-weight: 600;
+    font-weight: 700;
     font-size: clamp(1.0625rem, 1rem + 0.28vw, 1.25rem);
     line-height: 1.6;
     letter-spacing: -0.015em;

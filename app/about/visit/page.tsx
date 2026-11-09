@@ -91,7 +91,7 @@ export default function VisitPage() {
                   <span className="type-label block text-teal-deep">
                     전화 예약 · 문의
                   </span>
-                  <span className="mt-2 block font-serif text-2xl font-semibold tracking-tight text-ink">
+                  <span className="mt-2 block font-serif text-2xl font-bold tracking-tight text-ink">
                     {contact.tel}
                   </span>
                 </span>
@@ -109,7 +109,7 @@ export default function VisitPage() {
                     <span className="type-label block text-teal-deep">
                       카카오톡 채널
                     </span>
-                    <span className="mt-2 block font-serif text-lg font-semibold tracking-tight text-ink">
+                    <span className="mt-2 block font-serif text-lg font-bold tracking-tight text-ink">
                       채팅으로 예약 · 문의하기
                     </span>
                   </span>

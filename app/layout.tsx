@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
-import { IBM_Plex_Sans_KR, IBM_Plex_Mono, Hahmlet } from "next/font/google";
+import { IBM_Plex_Sans_KR, IBM_Plex_Mono } from "next/font/google";
+import localFont from "next/font/local";
 
 import "./globals.css";
 import { cn } from "@/lib/utils";
@@ -15,12 +16,23 @@ const plexKr = IBM_Plex_Sans_KR({
   display: "swap",
 });
 
-/** 헤드라인·인용 — 병원이 말하는 자리. 세리프가 받는다. */
-const hahmlet = Hahmlet({
-  subsets: ["latin"],
-  weight: ["400", "500", "600"],
-  variable: "--font-hahmlet",
+/**
+ * 헤드라인·인용 — 병원이 말하는 자리. 마루 부리(네이버 공개 글꼴)가 받는다.
+ * 명조이면서 획 끝이 둥글어 "따뜻하게 맞이한다"는 톤과 맞는다.
+ * Google Fonts 에 없어 파일을 직접 제공한다. 한 굵기가 약 450KB 라
+ * 미리 불러오기는 끄고, 준비되면 바꿔 끼운다(swap).
+ */
+const maruBuri = localFont({
+  src: [
+    { path: "./fonts/MaruBuri-Regular.woff2", weight: "400", style: "normal" },
+    { path: "./fonts/MaruBuri-SemiBold.woff2", weight: "600", style: "normal" },
+    { path: "./fonts/MaruBuri-Bold.woff2", weight: "700", style: "normal" },
+  ],
+  variable: "--font-maruburi",
   display: "swap",
+  preload: false,
+  adjustFontFallback: "Times New Roman",
+  fallback: ["AppleMyungjo", "Noto Serif KR", "serif"],
 });
 
 /** 검사 코드·라벨 전용. */
@@ -111,7 +123,7 @@ export default function RootLayout({
       className={cn(
         "h-full antialiased",
         plexKr.variable,
-        hahmlet.variable,
+        maruBuri.variable,
         plexMono.variable,
       )}
     >

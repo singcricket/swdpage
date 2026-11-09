@@ -53,7 +53,7 @@ export default function TeamPage() {
                   <Eyebrow>{vet.role}</Eyebrow>
 
                   <h2 className="mt-3 flex flex-wrap items-baseline gap-x-4 gap-y-1">
-                    <span className="font-serif text-2xl font-semibold tracking-tight text-ink">
+                    <span className="font-serif text-2xl font-bold tracking-tight text-ink">
                       {vet.name}
                     </span>
                     <span className="text-[0.9375rem] text-muted-foreground">

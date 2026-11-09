@@ -29,7 +29,7 @@ export function SiteFooter() {
               height={44}
               className="h-6 w-auto"
             />
-            <span className="font-serif text-base font-semibold tracking-tight text-ink">
+            <span className="font-serif text-base font-bold tracking-tight text-ink">
               {site.name}
             </span>
           </div>

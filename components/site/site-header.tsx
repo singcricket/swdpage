@@ -80,7 +80,7 @@ export function SiteHeader() {
           <span className="sr-only">신원당동물의료센터 홈으로</span>
           <span
             aria-hidden
-            className="font-serif text-[0.95rem] font-semibold tracking-tight text-ink lg:text-base"
+            className="font-serif text-[0.95rem] font-bold tracking-tight text-ink lg:text-base"
           >
             신원당동물의료센터
           </span>
@@ -175,7 +175,7 @@ function DesktopNav({ pathname }: { pathname: string }) {
                       >
                         <div className="space-y-0.5">
                           <div className="flex items-center gap-1.5">
-                            <span className="font-serif text-[0.9375rem] font-semibold leading-5 text-teal-deep">
+                            <span className="font-serif text-[0.9375rem] font-bold leading-5 text-teal-deep">
                               {overviewItem.label}
                             </span>
                             <span className="rounded bg-teal/10 px-1.5 py-0.5 text-[0.7rem] font-medium text-teal-deep">
