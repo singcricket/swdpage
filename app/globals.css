@@ -67,9 +67,11 @@
   --ink: oklch(0.27 0.045 256); /* #16283C */
   --teal: oklch(0.696 0.082 217); /* #5CAABE */
   --teal-deep: oklch(0.503 0.072 223); /* #2E6E82 */
-  --mist: oklch(0.956 0.009 215); /* #EAF2F4 */
+  /* 바탕 두 가지는 웜톤. 사진이 회백색이라 바탕까지 푸르면 화면 전체가 차갑게
+     가라앉는다. 청록(teal)은 그대로 두어 브랜드 색이 웜톤 위에서 또렷해진다. */
+  --mist: oklch(0.925 0.02 77); /* #EEE5D8 — 베이지 회색 */
   --coral: oklch(0.537 0.15 33); /* #B4442F */
-  --paper: oklch(0.985 0.004 92); /* #FBFAF7 */
+  --paper: oklch(0.974 0.01 82); /* #FAF6EF — 따뜻한 미색 */
 
   /* 시맨틱 */
   --background: var(--paper);
@@ -82,8 +84,8 @@
   --primary-foreground: oklch(0.99 0.003 200);
   --secondary: var(--mist);
   --secondary-foreground: oklch(0.38 0.055 230);
-  --muted: oklch(0.968 0.004 220);
-  --muted-foreground: oklch(0.518 0.027 236); /* #5A6B76 — paper 대비 5.3:1 */
+  --muted: oklch(0.955 0.01 80);
+  --muted-foreground: oklch(0.48 0.027 236); /* paper 대비 약 6:1, mist 위에서도 4.5:1 이상 */
   --accent: var(--mist);
   --accent-foreground: oklch(0.38 0.055 230);
   --destructive: var(--coral);
