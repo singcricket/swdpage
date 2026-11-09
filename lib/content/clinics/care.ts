@@ -65,9 +65,15 @@ export const carePage: ClinicPage = {
       id: "photos",
       title: "머무는 공간",
       images: [
-        facility.catHotel[2],
+        facility.ward[0],
+        facility.ward[1],
+        facility.hotelLobby[0],
+        facility.catHotel[0],
+        facility.catHotel[3],
+        facility.catHotel[4],
         facility.dogHotel[0],
-        facility.playground[3],
+        facility.dogHotel[2],
+        facility.playground[1],
       ],
     },
     {

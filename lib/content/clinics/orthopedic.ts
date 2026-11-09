@@ -1,5 +1,5 @@
 import type { ClinicPage } from "@/lib/content/types";
-import { facility } from "@/lib/images";
+import { equipment, facility } from "@/lib/images";
 
 /** 원고 「4-1. 정형외과」 */
 export const orthopedicPage: ClinicPage = {
@@ -59,6 +59,20 @@ export const orthopedicPage: ClinicPage = {
         ],
         ["5. 수술 계획 확정", "보호자와 함께 최종 결정합니다"],
       ],
+    },
+    {
+      kind: "equipment",
+      id: "equipment",
+      title: "검사와 수술 장비",
+      intro: "방사선으로 수술 계획을 세우고, 마취 중에는 모니터로 상태를 지켜봅니다.",
+      items: [equipment.xray, equipment.anesthesia, equipment.monitor],
+    },
+    {
+      kind: "photos",
+      id: "space-photos",
+      title: "검사와 수술 공간",
+      intro: "방사선실과 수술실은 2층 진료 구역에 있습니다.",
+      images: [facility.xrayRoom[0], facility.surgeryRoom[1]],
     },
     {
       kind: "list",

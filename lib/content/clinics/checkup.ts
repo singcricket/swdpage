@@ -1,5 +1,5 @@
 import type { ClinicPage } from "@/lib/content/types";
-import { facility } from "@/lib/images";
+import { equipment, facility } from "@/lib/images";
 
 /** 원고 「7. 건강검진 센터」 */
 export const checkupPage: ClinicPage = {
@@ -92,6 +92,13 @@ export const checkupPage: ClinicPage = {
         },
       ],
       note: "노령 동물은 한 번의 검진으로도 여러 질환이 동시에 발견되는 경우가 많습니다. 심화 검진은 한 번에 전신을 꼼꼼하게 살피는 가장 효율적인 방법입니다.",
+    },
+    {
+      kind: "equipment",
+      id: "equipment",
+      title: "검사 장비",
+      intro: "혈액·호르몬·영상 검사를 원내 장비로 진행합니다.",
+      items: [equipment.labProcyteOne, equipment.labCatalystOne, equipment.labFujiNx600, equipment.labVetStat, equipment.labVcheck, equipment.xray, equipment.ultrasound],
     },
     {
       kind: "table",

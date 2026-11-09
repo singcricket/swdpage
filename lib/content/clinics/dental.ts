@@ -1,5 +1,5 @@
 import type { ClinicPage } from "@/lib/content/types";
-import { facility } from "@/lib/images";
+import { equipment, facility } from "@/lib/images";
 
 /** 원고 「6. 치과 병원」 */
 export const dentalPage: ClinicPage = {
@@ -95,6 +95,20 @@ export const dentalPage: ClinicPage = {
         { name: "체온", detail: "저체온 예방 및 관리" },
       ],
       note: "노령 동물이라도, 아픈 치아를 그대로 두는 것이 더 위험합니다. 마취 위험도는 사전 평가를 통해 충분히 관리할 수 있습니다. 마취에서 깨어나는 회복 과정도 완전히 안정될 때까지 곁에서 지켜봅니다.",
+    },
+    {
+      kind: "equipment",
+      id: "equipment",
+      title: "치과 장비",
+      intro: "치과 전용 방사선부터 마취 모니터링까지, 치과 진료에 쓰는 장비입니다.",
+      items: [equipment.dentalXray, equipment.dentalUnit, equipment.dentalCuring, equipment.anesthesia, equipment.monitor],
+    },
+    {
+      kind: "photos",
+      id: "space-photos",
+      title: "치과실",
+      intro: "치과 진료는 별도의 치과실에서 진행합니다.",
+      images: [facility.dentalRoom[1], facility.dentalRoom[2]],
     },
     {
       kind: "treatments",

@@ -2,7 +2,8 @@ import * as React from "react";
 
 import { cn } from "@/lib/utils";
 import type { Section } from "@/lib/content/types";
-import { ArchImage } from "./arch";
+import { ArchImage, RectImage } from "./arch";
+import { EquipmentGrid } from "./equipment-grid";
 import { Reveal } from "./reveal";
 import { stagger } from "@/lib/motion";
 import { Eyebrow, Note, PullQuote, SectionHeader } from "./primitives";
@@ -109,8 +110,8 @@ export function SectionBlock({ section }: { section: Section }) {
 
 function SectionBody({ section }: { section: Section }) {
   switch (section.kind) {
-    case "prose":
-      return (
+    case "prose": {
+      const text = (
         <div className="measure space-y-5">
           {section.body.map((paragraph, index) => (
             <p key={index} className="type-body text-ink/85">
@@ -119,6 +120,22 @@ function SectionBody({ section }: { section: Section }) {
           ))}
         </div>
       );
+      if (!section.image) return text;
+      return (
+        <div className="grid items-start gap-8 md:grid-cols-[minmax(0,1fr)_16rem] md:gap-12">
+          {text}
+          <Reveal>
+            <RectImage
+              image={section.image}
+              ratio="square"
+              caption={section.image.alt}
+              sizes="(min-width: 768px) 16rem, 90vw"
+              zoom={{ gallery: [section.image], index: 0 }}
+            />
+          </Reveal>
+        </div>
+      );
+    }
 
     case "list":
       return (
@@ -262,11 +279,15 @@ function SectionBody({ section }: { section: Section }) {
                 ratio="window"
                 caption={image.alt}
                 sizes="(min-width: 1024px) 20rem, (min-width: 640px) 45vw, 90vw"
+                zoom={{ gallery: section.images, index }}
               />
             </Reveal>
           ))}
         </ul>
       );
+
+    case "equipment":
+      return <EquipmentGrid items={section.items} />;
 
     default:
       return null;

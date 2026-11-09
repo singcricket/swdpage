@@ -1,5 +1,5 @@
 import type { ClinicPage } from "@/lib/content/types";
-import { facility } from "@/lib/images";
+import { equipment, facility } from "@/lib/images";
 
 /** 원고 「2-5. 노령견·노령묘 관리」 */
 export const seniorPage: ClinicPage = {
@@ -10,7 +10,7 @@ export const seniorPage: ClinicPage = {
   lede: "천천히, 그리고 편안하게. 그 길을 함께 걷겠습니다. 노령이 되면 몸 곳곳에서 조용히 변화가 시작됩니다. 겉으로는 멀쩡해 보여도 안에서는 이미 진행되고 있는 것들이 있습니다. 노령 동물에게는 더 자주, 더 꼼꼼하게 살피는 것이 필요합니다.",
   description:
     "관절염, 인지기능장애(CDS), 고혈압, 갑상선 질환 등 노령 질환을 관리합니다. 사람 나이 환산표, 6개월 주기 정기검진 항목, 영양·생활 환경 조언과 말기 돌봄 안내를 담았습니다.",
-  hero: facility.consultRoom[0],
+  hero: facility.examRoom[2],
   sections: [
     {
       kind: "table",
@@ -87,6 +87,20 @@ export const seniorPage: ClinicPage = {
           detail: "행동 변화, 수면 패턴, 방향감각 등 보호자 문진 포함",
         },
       ],
+    },
+    {
+      kind: "equipment",
+      id: "equipment",
+      title: "검사 장비",
+      intro: "정기검진 항목 대부분을 한 번의 내원으로 확인합니다.",
+      items: [equipment.ultrasound, equipment.xray, equipment.labVcheck],
+    },
+    {
+      kind: "photos",
+      id: "space-photos",
+      title: "검사 공간",
+      intro: "정기검진은 원내 검사실에서 진행합니다.",
+      images: [facility.ultrasoundRoom[1], facility.ward[0]],
     },
     {
       kind: "diseases",

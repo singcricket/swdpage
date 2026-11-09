@@ -1,5 +1,5 @@
 import type { ClinicPage } from "@/lib/content/types";
-import { facility } from "@/lib/images";
+import { equipment, facility } from "@/lib/images";
 
 /** 원고 「5. 종양 클리닉」 */
 export const oncologyPage: ClinicPage = {
@@ -9,7 +9,7 @@ export const oncologyPage: ClinicPage = {
   lede: "치료 방향을 강요하지 않습니다. 암이라는 진단을 받는 순간 많은 보호자분이 막막함을 느낍니다. 무엇을 해야 할지, 어디서부터 시작해야 할지 모르는 것이 당연합니다. 할 수 있는 것과 없는 것을 솔직하게 말씀드리고, 보호자분과 함께 아이에게 가장 좋은 방향을 찾겠습니다.",
   description:
     "세포검사·조직검사·영상 병기 결정부터 외과적 절제, 항암 화학요법, 완화치료까지. PARR·유세포분석 등 특수 검사와 항암제 감수성 평가(PDST)를 연계합니다.",
-  hero: facility.consultRoom[1],
+  hero: facility.examRoom[1],
   sections: [
     {
       kind: "treatments",
@@ -51,6 +51,13 @@ export const oncologyPage: ClinicPage = {
           detail: "혈액 종양(림프종 등)의 병기 결정 시 필요한 경우 시행",
         },
       ],
+    },
+    {
+      kind: "equipment",
+      id: "equipment",
+      title: "영상 검사 장비",
+      intro: "방사선과 초음파는 원내에서 진행합니다. CT는 협력 병원에 의뢰합니다.",
+      items: [equipment.xray, equipment.ultrasound],
     },
     {
       kind: "table",
@@ -97,6 +104,13 @@ export const oncologyPage: ClinicPage = {
         ],
       ],
       note: "특수 검사는 모든 경우에 필요한 것은 아닙니다. 어떤 검사가 필요한지, 왜 필요한지 먼저 충분히 설명드리겠습니다. 검사 결과가 나오면 보호자분이 이해할 수 있도록 함께 검토합니다.",
+    },
+    {
+      kind: "photos",
+      id: "space-photos",
+      title: "진단과 치료 공간",
+      intro: "세포검사는 원내 임상병리실에서 진행합니다.",
+      images: [facility.labRoom[0], facility.treatmentRoom[3]],
     },
     {
       kind: "treatments",

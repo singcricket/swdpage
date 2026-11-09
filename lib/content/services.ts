@@ -44,7 +44,7 @@ export const services: Service[] = [
     title: "종양 클리닉",
     claim: "암 진단이 끝이 아닙니다",
     scope: "진단과 병기 결정 · 항암 · 완화치료",
-    image: facility.consultRoom[0],
+    image: facility.examRoom[1],
   },
   {
     href: "/clinics/dental",

@@ -47,8 +47,8 @@ export const catPage: ClinicPage = {
       intro:
         "도착해서 기다리고, 진료받고, 머무는 동안까지 개와 마주치지 않도록 공간을 나눴습니다.",
       images: [
-        facility.catWaiting[0],
-        facility.catWaiting[4],
+        facility.catWaiting[1],
+        facility.catWaiting[3],
         facility.catHotel[2],
       ],
     },
@@ -60,6 +60,7 @@ export const catPage: ClinicPage = {
         "신원당 고양이 병원은 ISFM(국제고양이의학회) Cat Friendly Clinic 인증을 받은 병원입니다. Cat Friendly Clinic 인증은 고양이 친화적인 진료 환경과 접근 방식을 갖춘 병원에 부여되는 국제 인증입니다. 공간 구성, 진료 방식, 의료진 교육 등 엄격한 기준을 충족한 병원만이 받을 수 있습니다.",
         "고양이를 고양이답게 진료하는 병원이라는 것을 의미합니다.",
       ],
+      image: facility.certificates[0],
     },
     {
       kind: "list",

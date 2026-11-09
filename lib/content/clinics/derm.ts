@@ -1,5 +1,5 @@
 import type { ClinicPage } from "@/lib/content/types";
-import { facility } from "@/lib/images";
+import { equipment, facility } from "@/lib/images";
 
 /** 원고 「2-4. 피부과 클리닉」 */
 export const dermPage: ClinicPage = {
@@ -91,6 +91,20 @@ export const dermPage: ClinicPage = {
             "식이 알러지 감별을 위해 8~12주간 단일 또는 가수분해 식이를 진행합니다",
         },
       ],
+    },
+    {
+      kind: "equipment",
+      id: "equipment",
+      title: "검사 장비",
+      intro: "외이도는 검이경으로 귀 안쪽까지 직접 확인합니다.",
+      items: [equipment.otoscope],
+    },
+    {
+      kind: "photos",
+      id: "space-photos",
+      title: "검사 공간",
+      intro: "세포검사와 이도검사는 원내 임상병리실에서 진행합니다.",
+      images: [facility.labRoom[0], facility.examRoom[1]],
     },
     {
       kind: "treatments",

@@ -29,22 +29,23 @@ function diseaseNames(sections: Section[], limit = 5) {
   return diseases.items.slice(0, limit).map((item) => item.name);
 }
 
-function toSubClinic(page: ClinicPage, image: Img): SubClinic {
+/** 카드 사진은 하위 페이지 히어로를 그대로 쓴다. 두 곳이 어긋나지 않게. */
+function toSubClinic(page: ClinicPage): SubClinic {
   return {
     href: page.href,
     title: page.title,
     claim: page.headline,
     covers: diseaseNames(page.sections),
-    image,
+    image: page.hero,
   };
 }
 
 export const chronicSubClinics: SubClinic[] = [
-  toSubClinic(cardioPage, facility.ultrasoundRoom[0]),
-  toSubClinic(renalPage, facility.labRoom[1]),
-  toSubClinic(giPage, facility.treatmentRoom[0]),
-  toSubClinic(dermPage, facility.examRoom[4]),
-  toSubClinic(seniorPage, facility.consultRoom[0]),
+  toSubClinic(cardioPage),
+  toSubClinic(renalPage),
+  toSubClinic(giPage),
+  toSubClinic(dermPage),
+  toSubClinic(seniorPage),
 ];
 
 /** 원고 「2. 만성질환 클리닉」 대표 페이지 */

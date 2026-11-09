@@ -26,6 +26,8 @@ type Base = {
 export type ProseSection = Base & {
   kind: "prose";
   body: string[];
+  /** 문단 옆에 붙는 사진 한 장. 인증서처럼 글을 뒷받침하는 자리에 쓴다. */
+  image?: Img;
 };
 
 /** 주요 진료 질환 — 질환명 + 설명 */
@@ -105,6 +107,18 @@ export type PhotoSection = Base & {
   images: Img[];
 };
 
+/**
+ * 장비 사진 묶음.
+ * 제품 사진은 흰 배경 위 컷이라 아치로 자르면 잘린 티가 난다.
+ * 「photos」와 달리 원본 비율 그대로 카드 안에 담는다. 캡션은 alt.
+ */
+export type EquipmentSection = Base & {
+  kind: "equipment";
+  intro?: string;
+  items: Img[];
+  note?: string;
+};
+
 /** 병원의 목소리를 그대로 보여주는 자리 */
 export type QuoteSection = Base & {
   kind: "quote";
@@ -122,6 +136,7 @@ export type Section =
   | SymptomSection
   | TableSection
   | PhotoSection
+  | EquipmentSection
   | QuoteSection;
 
 /* ------------------------------------------------------------------ */

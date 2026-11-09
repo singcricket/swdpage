@@ -63,12 +63,13 @@ export default function FacilityPage() {
                     </p>
 
                     <ul className="mt-7 grid list-none gap-6 sm:grid-cols-2">
-                      {space.images.map((image) => (
+                      {space.images.map((image, imageIndex) => (
                         <li key={image.src}>
                           <ArchImage
                             image={image}
                             ratio="wide"
                             sizes="(min-width: 640px) 24rem, 88vw"
+                            zoom={{ gallery: space.images, index: imageIndex }}
                           />
                         </li>
                       ))}

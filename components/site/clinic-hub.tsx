@@ -8,6 +8,7 @@ import { Reveal } from "./blocks/reveal";
 import { stagger } from "@/lib/motion";
 import { Section, SectionHeader } from "./blocks/primitives";
 import { CtaBand } from "./blocks/cta-band";
+import { EquipmentGrid } from "./blocks/equipment-grid";
 
 export type HubChild = {
   href: string;
@@ -37,6 +38,9 @@ export function ClinicHubLayout({
   principlesTitle = "이 클리닉이 일하는 방식",
   childrenTitle,
   childrenLede,
+  equipment,
+  equipmentTitle = "사용하는 장비",
+  equipmentLede,
 }: {
   eyebrow?: string;
   title: string;
@@ -48,6 +52,10 @@ export function ClinicHubLayout({
   principlesTitle?: string;
   childrenTitle: string;
   childrenLede?: string;
+  /** 원칙 아래에 붙는 장비 사진. 원칙을 뒷받침하는 장비만 고른다. */
+  equipment?: readonly Img[];
+  equipmentTitle?: string;
+  equipmentLede?: string;
 }) {
   return (
     <article>
@@ -129,6 +137,17 @@ export function ClinicHubLayout({
                 </li>
               ))}
             </ul>
+          </div>
+        </Section>
+      ) : null}
+
+      {equipment?.length ? (
+        <Section>
+          <div className="shell">
+            <SectionHeader title={equipmentTitle} lede={equipmentLede} />
+            <div className="mt-12">
+              <EquipmentGrid items={[...equipment]} />
+            </div>
           </div>
         </Section>
       ) : null}

@@ -1,6 +1,6 @@
 import type { ClinicPage, Section } from "@/lib/content/types";
 import type { Img } from "@/lib/images";
-import { facility } from "@/lib/images";
+import { equipment, facility } from "@/lib/images";
 
 import { orthopedicPage } from "./orthopedic";
 import { generalSurgeryPage } from "./general-surgery";
@@ -20,19 +20,20 @@ function surgeryNames(sections: Section[], limit = 5) {
   return list.items.slice(0, limit).map((item) => item.name);
 }
 
-function toSubClinic(page: ClinicPage, image: Img): SubClinic {
+/** 카드 사진은 하위 페이지 히어로를 그대로 쓴다. 두 곳이 어긋나지 않게. */
+function toSubClinic(page: ClinicPage): SubClinic {
   return {
     href: page.href,
     title: page.title,
     claim: page.headline,
     covers: surgeryNames(page.sections),
-    image,
+    image: page.hero,
   };
 }
 
 export const surgerySubClinics: SubClinic[] = [
-  toSubClinic(orthopedicPage, facility.xrayRoom[1]),
-  toSubClinic(generalSurgeryPage, facility.surgeryRoom[0]),
+  toSubClinic(orthopedicPage),
+  toSubClinic(generalSurgeryPage),
 ];
 
 /** 원고 「4. 외과 센터」 대표 페이지 */
@@ -59,6 +60,8 @@ export const surgeryHub = {
       body: "심전도·산소포화도·호기말 이산화탄소·혈압·체온을 수술 내내 확인하고, 마취에서 깨어나 안정될 때까지 곁을 지킵니다.",
     },
   ],
+  /** 「마취를 집도만큼」을 뒷받침하는 장비 */
+  equipment: [equipment.anesthesia, equipment.monitor],
 } as const;
 
 export { orthopedicPage, generalSurgeryPage };

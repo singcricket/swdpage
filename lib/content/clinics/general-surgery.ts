@@ -1,5 +1,5 @@
 import type { ClinicPage } from "@/lib/content/types";
-import { facility } from "@/lib/images";
+import { equipment, facility } from "@/lib/images";
 
 /** 원고 「4-2. 일반외과」 */
 export const generalSurgeryPage: ClinicPage = {
@@ -76,6 +76,20 @@ export const generalSurgeryPage: ClinicPage = {
         { name: "혈압", detail: "순환 상태 실시간 확인" },
         { name: "체온", detail: "저체온 예방 및 관리" },
       ],
+    },
+    {
+      kind: "equipment",
+      id: "equipment",
+      title: "수술 · 마취 장비",
+      intro: "출혈을 줄이는 혈관 밀봉 장비와 마취 모니터링 장비를 갖추고 있습니다.",
+      items: [equipment.ligasure, equipment.electrosurgery, equipment.anesthesia, equipment.monitor],
+    },
+    {
+      kind: "photos",
+      id: "space-photos",
+      title: "수술과 회복 공간",
+      intro: "수술을 마친 아이는 마취에서 깨어나 안정될 때까지 입원실에서 지켜봅니다.",
+      images: [facility.surgeryRoom[1], facility.ward[1]],
     },
     {
       kind: "symptoms",

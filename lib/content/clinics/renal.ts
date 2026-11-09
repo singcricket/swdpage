@@ -1,5 +1,5 @@
 import type { ClinicPage } from "@/lib/content/types";
-import { facility } from "@/lib/images";
+import { equipment, facility } from "@/lib/images";
 
 /** 원고 「2-2. 신장·비뇨기 클리닉」 */
 export const renalPage: ClinicPage = {
@@ -82,6 +82,13 @@ export const renalPage: ClinicPage = {
         },
         { name: "방사선 (X-ray)", detail: "결석의 위치와 크기를 확인합니다" },
       ],
+    },
+    {
+      kind: "equipment",
+      id: "equipment",
+      title: "검사 장비",
+      intro: "신장 수치와 전해질, 영상 검사를 원내 장비로 진행합니다.",
+      items: [equipment.labCatalystOne, equipment.labFujiNx600, equipment.labVetStat, equipment.ultrasound, equipment.xray],
     },
     {
       kind: "treatments",

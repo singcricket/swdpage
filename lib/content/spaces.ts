@@ -76,13 +76,6 @@ export const spaceGroups: SpaceGroup[] = [
         images: [facility.examRoom[0], facility.examRoom[4]],
       },
       {
-        id: "consult-room",
-        name: "상담실",
-        body: "수술 전 상담, 종양 치료 방향 결정, 말기 돌봄처럼 시간을 들여 이야기해야 할 때 쓰는 별도의 방입니다.",
-        floor: "2F",
-        images: [facility.consultRoom[0]],
-      },
-      {
         id: "treatment",
         name: "처치실",
         body: "주사, 채혈, 상처 처치 등 일상적인 처치가 이루어지는 공간입니다. 약품과 기구를 손 닿는 곳에 정리해 처치 시간을 줄였습니다.",
@@ -167,6 +160,13 @@ export const spaceGroups: SpaceGroup[] = [
         body: "1층 「올래(All 來)」 반려동물 유치원·호텔의 프론트와 라운지입니다. 입·퇴실과 상담이 이곳에서 이루어집니다.",
         floor: "1F",
         images: [facility.hotelLobby[0], facility.hotelLobby[6]],
+      },
+      {
+        id: "consult-room",
+        name: "상담실",
+        body: "호텔·유치원을 이용하는 아이의 보호자와 마주 앉아 이야기하는 별도의 방입니다. 입실 전 건강 상태와 예방접종, 먹는 약과 식습관, 성격과 주의할 점을 미리 여쭙고, 머무는 동안의 생활과 퇴실 시 전달 사항을 이곳에서 안내해 드립니다.",
+        floor: "1F",
+        images: [facility.consultRoom[0], facility.consultRoom[1]],
       },
       {
         id: "cat-hotel",

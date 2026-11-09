@@ -2,6 +2,7 @@ import Image from "next/image";
 
 import { cn } from "@/lib/utils";
 import type { Img } from "@/lib/images";
+import { ZoomOverlay, type ZoomProp } from "./zoom";
 
 type ArchImageProps = {
   image: Img;
@@ -19,6 +20,8 @@ type ArchImageProps = {
   className?: string;
   /** 아치 바깥을 teal 선이 한 겹 감싼다. 코브 조명을 옮긴 것. */
   outlined?: boolean;
+  /** 주면 눌러서 크게 볼 수 있다 */
+  zoom?: ZoomProp;
 };
 
 const ratioClass = {
@@ -43,6 +46,7 @@ export function ArchImage({
   sizes = "(min-width: 1024px) 32rem, 90vw",
   className,
   outlined = false,
+  zoom,
 }: ArchImageProps) {
   const frame = (
     <div
@@ -64,6 +68,7 @@ export function ArchImage({
           className="pointer-events-none absolute inset-0 border border-teal/80 arch"
         />
       ) : null}
+      {zoom ? <ZoomOverlay {...zoom} /> : null}
     </div>
   );
 
@@ -98,6 +103,8 @@ type RectImageProps = {
   className?: string;
   /** 프레임 바깥을 teal 선이 한 겹 감싼다. */
   outlined?: boolean;
+  /** 주면 눌러서 크게 볼 수 있다 */
+  zoom?: ZoomProp;
   /**
    * object-position 값 (예: "center top", "30% 50%").
    * null/undefined면 기본값(center)을 그대로 쓴다 — 얼굴이 중앙에서
@@ -123,6 +130,7 @@ export function RectImage({
   className,
   outlined = false,
   objectPosition = null,
+  zoom,
 }: RectImageProps) {
   const auto = ratio === "auto" && image.width && image.height;
 
@@ -150,6 +158,7 @@ export function RectImage({
           className="pointer-events-none absolute inset-0 rounded-2xl border border-teal/80"
         />
       ) : null}
+      {zoom ? <ZoomOverlay {...zoom} /> : null}
     </div>
   );
 

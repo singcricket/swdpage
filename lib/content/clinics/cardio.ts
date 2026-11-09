@@ -1,5 +1,5 @@
 import type { ClinicPage } from "@/lib/content/types";
-import { facility } from "@/lib/images";
+import { equipment, facility } from "@/lib/images";
 
 /** 원고 「2-1. 심혈관계 클리닉」 */
 export const cardioPage: ClinicPage = {
@@ -68,6 +68,13 @@ export const cardioPage: ClinicPage = {
             "심근 손상 여부를 확인하는 혈액 검사. 심근염, 심근 괴사 등 심장 근육의 이상을 민감하게 반영합니다",
         },
       ],
+    },
+    {
+      kind: "equipment",
+      id: "equipment",
+      title: "검사 장비",
+      intro: "심초음파와 심장 관련 혈액검사를 원내 장비로 진행합니다.",
+      items: [equipment.ultrasound, equipment.xray, equipment.monitor, equipment.labVcheck],
     },
     {
       kind: "treatments",

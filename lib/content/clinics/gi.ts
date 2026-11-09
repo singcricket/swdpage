@@ -1,5 +1,5 @@
 import type { ClinicPage } from "@/lib/content/types";
-import { facility } from "@/lib/images";
+import { equipment, facility } from "@/lib/images";
 
 /** 원고 「2-3. 소화기 클리닉」 */
 export const giPage: ClinicPage = {
@@ -83,6 +83,13 @@ export const giPage: ClinicPage = {
         },
         { name: "분변 검사", detail: "기생충, 세균 감염 여부 확인" },
       ],
+    },
+    {
+      kind: "equipment",
+      id: "equipment",
+      title: "검사 장비",
+      intro: "내시경과 초음파로 소화기 상태를 확인합니다.",
+      items: [equipment.endoscope, equipment.ultrasound, equipment.labVcheck, equipment.xray],
     },
     {
       kind: "treatments",

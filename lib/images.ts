@@ -271,10 +271,10 @@ export const facility = {
     f("exam-room-05.jpg", "모니터가 설치된 진료실"),
   ],
 
-  /** 상담실 */
+  /** 1층 호텔·유치원 상담실 */
   consultRoom: [
-    f("consult-room-01.jpg", "보호자 상담실"),
-    f("consult-room-02.jpg", "상담 테이블이 놓인 상담실"),
+    f("consult-room-01.jpg", "1층 호텔·유치원 보호자 상담실"),
+    f("consult-room-02.jpg", "상담 테이블이 놓인 1층 상담실"),
   ],
 
   /** 처치실 */
@@ -403,7 +403,7 @@ export const hero = {
   chronic: facility.examRoom[0],
   cat: facility.catWaiting[0],
   surgery: facility.surgeryRoom[0],
-  oncology: facility.consultRoom[0],
+  oncology: facility.examRoom[1],
   dental: facility.dentalRoom[0],
   checkup: facility.labRoom[0],
   care: facility.catHotel[2],

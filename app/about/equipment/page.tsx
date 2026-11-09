@@ -9,6 +9,7 @@ import { stagger } from "@/lib/motion";
 import { IndexRail } from "@/components/site/blocks/index-rail";
 import { SectionHeader } from "@/components/site/blocks/primitives";
 import { CtaBand } from "@/components/site/blocks/cta-band";
+import { ZoomOverlay } from "@/components/site/blocks/zoom";
 
 export const metadata: Metadata = {
   title: "의료장비",
@@ -52,7 +53,7 @@ export default function EquipmentPage() {
                   >
                     {/* 제품 사진은 흰 배경 위 컷이라 아치로 자르면 잘린 티가 난다.
                         여기서는 사진을 있는 그대로 두고 여백으로 정리한다. */}
-                    <div className="flex items-center justify-center rounded-md bg-card p-6 ring-1 ring-border">
+                    <div className="relative flex items-center justify-center rounded-md bg-card p-6 ring-1 ring-border">
                       <Image
                         src={item.image.src}
                         alt={item.image.alt}
@@ -60,6 +61,10 @@ export default function EquipmentPage() {
                         height={420}
                         sizes="(min-width: 768px) 14rem, 60vw"
                         className="h-auto max-h-44 w-auto object-contain"
+                      />
+                      <ZoomOverlay
+                        gallery={group.items.map((entry) => entry.image)}
+                        index={index}
                       />
                     </div>
 
