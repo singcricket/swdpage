@@ -27,6 +27,9 @@ export const metadata: Metadata = {
   alternates: { canonical: "/about" },
 };
 
+/** 인사말 옆 사진 — 의료진 소개의 대표원장 사진을 그대로 쓴다. */
+const director = vets.find((vet) => vet.role === "대표원장") ?? vets[0];
+
 export default function AboutPage() {
   return (
     <article>
@@ -63,9 +66,9 @@ export default function AboutPage() {
 
           <Reveal className="w-60 justify-self-center lg:w-full lg:justify-self-end">
             <ArchImage
-              image={facility.entrance[0]}
+              image={director.portrait}
               ratio="tall"
-              caption="2층 동물의료센터 입구"
+              caption={`${director.role} ${director.name}`}
               sizes="(min-width: 1024px) 20rem, 15rem"
             />
           </Reveal>
