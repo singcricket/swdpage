@@ -2,6 +2,8 @@ import * as React from "react";
 
 import { cn } from "@/lib/utils";
 import type { Section } from "@/lib/content/types";
+import type { Img } from "@/lib/images";
+import type { PlacedIllustration } from "@/lib/illustrations.server";
 import { RectImage } from "./arch";
 import { EquipmentGrid } from "./equipment-grid";
 import { Reveal } from "./reveal";
@@ -25,6 +27,20 @@ function ArchTick({ tone = "teal" }: { tone?: "teal" | "coral" }) {
   );
 }
 
+/** AI 삽화 한 장. 흰 바탕 카드에 원본 비율 그대로, 누르면 크게 본다. */
+function Figure({ image, className }: { image: Img; className?: string }) {
+  return (
+    <RectImage
+      image={image}
+      ratio="auto"
+      caption={image.alt}
+      className={cn("bg-card ring-1 ring-border", className)}
+      sizes="(min-width: 1024px) 48rem, 90vw"
+      zoom={{ gallery: [image], index: 0 }}
+    />
+  );
+}
+
 /**
  * 이름 + 설명이 반복되는 구조.
  * 원고의 「주요 진료 질환」·「치료 방향」이 전부 이 모양이라 한 컴포넌트로 받는다.
@@ -32,9 +48,12 @@ function ArchTick({ tone = "teal" }: { tone?: "teal" | "coral" }) {
 function DefinitionRows({
   items,
   marker = false,
+  figures = [],
 }: {
   items: { name: string; code?: string; body: string }[];
   marker?: boolean;
+  /** 항목 이름이 맞는 삽화는 그 항목 설명 아래에 붙는다 */
+  figures?: PlacedIllustration[];
 }) {
   return (
     <dl className="border-t border-border">
@@ -55,7 +74,18 @@ function DefinitionRows({
               ) : null}
             </span>
           </dt>
-          <dd className="type-body text-ink/80">{item.body}</dd>
+          <dd className="type-body text-ink/80">
+            {item.body}
+            {figures
+              .filter((figure) => figure.item === item.name)
+              .map((figure) => (
+                <Figure
+                  key={figure.image.src}
+                  image={figure.image}
+                  className="mt-6"
+                />
+              ))}
+          </dd>
         </Reveal>
       ))}
     </dl>
@@ -82,7 +112,14 @@ const tdClass =
 /* 섹션 렌더러                                                         */
 /* ------------------------------------------------------------------ */
 
-export function SectionBlock({ section }: { section: Section }) {
+export function SectionBlock({
+  section,
+  figures = [],
+}: {
+  section: Section;
+  /** 이 섹션 자리에 놓을 삽화 (lib/illustrations.ts 에서 정한 자리) */
+  figures?: PlacedIllustration[];
+}) {
   if (section.kind === "quote") {
     return (
       <div className="py-4">
@@ -98,8 +135,16 @@ export function SectionBlock({ section }: { section: Section }) {
         title={section.title}
         lede={"intro" in section ? section.intro : undefined}
       />
+      {/* 항목을 정하지 않은 삽화는 섹션 제목 바로 아래 */}
+      {figures
+        .filter((figure) => !figure.item)
+        .map((figure) => (
+          <Reveal key={figure.image.src} className="mt-9">
+            <Figure image={figure.image} />
+          </Reveal>
+        ))}
       <div className="mt-9">
-        <SectionBody section={section} />
+        <SectionBody section={section} figures={figures} />
       </div>
       {"note" in section && section.note ? (
         <Note className="mt-8">{section.note}</Note>
@@ -108,7 +153,13 @@ export function SectionBlock({ section }: { section: Section }) {
   );
 }
 
-function SectionBody({ section }: { section: Section }) {
+function SectionBody({
+  section,
+  figures,
+}: {
+  section: Section;
+  figures: PlacedIllustration[];
+}) {
   switch (section.kind) {
     case "prose": {
       const text = (
@@ -155,10 +206,12 @@ function SectionBody({ section }: { section: Section }) {
       );
 
     case "diseases":
-      return <DefinitionRows items={section.items} />;
+      return <DefinitionRows items={section.items} figures={figures} />;
 
     case "treatments":
-      return <DefinitionRows items={section.items} marker />;
+      return (
+        <DefinitionRows items={section.items} figures={figures} marker />
+      );
 
     case "tests":
       return (

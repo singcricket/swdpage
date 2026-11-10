@@ -5,6 +5,7 @@ import { PageHero } from "./blocks/page-hero";
 import { IndexRail } from "./blocks/index-rail";
 import { SectionBlock } from "./blocks/sections";
 import { CtaBand } from "./blocks/cta-band";
+import { illustrationsForPage } from "@/lib/illustrations.server";
 
 /** 페이지 데이터 하나로 metadata 를 만든다. 각 route 에서 재사용. */
 export function clinicMetadata(page: ClinicPage): Metadata {
@@ -34,6 +35,8 @@ export function ClinicPageLayout({
   crumbs?: { label: string; href: string }[];
 }) {
   const toc = tableOfContents(page.sections);
+  // 폴더에 들어 있는 삽화만 정해 둔 자리에 놓인다 (lib/illustrations.ts)
+  const figures = illustrationsForPage(page.href);
 
   return (
     <article>
@@ -53,7 +56,11 @@ export function ClinicPageLayout({
 
         <div className="flex min-w-0 flex-col gap-16 md:gap-20">
           {page.sections.map((section) => (
-            <SectionBlock key={section.id} section={section} />
+            <SectionBlock
+              key={section.id}
+              section={section}
+              figures={figures.filter((figure) => figure.section === section.id)}
+            />
           ))}
         </div>
       </div>

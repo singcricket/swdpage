@@ -137,5 +137,18 @@ print(f"favicon.ico: {dest.stat().st_size} bytes, {len(sizes)} sizes")
 PY
 rm -rf "$ICO_TMP"
 
+# ---- AI 삽화 (기획안 IL-xx) ----
+# 원본 public/assets/images/illustrations/illust-IL-xx.png → 가로 2000px 이하 PNG.
+# 위에서 $OUT 을 통째로 지우므로, 원본이 여기 있어야 다시 만들어진다.
+SRC_I=$ROOT/public/assets/images/illustrations
+mkdir -p $OUT/illustrations
+if [ -d "$SRC_I" ]; then
+  for src in "$SRC_I"/illust-IL-*.png; do
+    [ -e "$src" ] || continue
+    sips -Z 2000 "$src" --out "$OUT/illustrations/$(basename "$src")" >/dev/null 2>&1 || echo "  FAIL $src"
+  done
+fi
+echo "illustrations: $(ls $OUT/illustrations | wc -l | tr -d ' ') files"
+
 echo "---"
 echo "total: $(find $OUT -type f | wc -l | tr -d ' ') files, $(du -sh $OUT | cut -f1)"
