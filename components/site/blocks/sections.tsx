@@ -3,7 +3,7 @@ import * as React from "react";
 import { cn } from "@/lib/utils";
 import type { Section } from "@/lib/content/types";
 import type { Img } from "@/lib/images";
-import type { PlacedIllustration } from "@/lib/illustrations.server";
+import type { PlacedFigure } from "@/lib/media.server";
 import { RectImage } from "./arch";
 import { EquipmentGrid } from "./equipment-grid";
 import { Reveal } from "./reveal";
@@ -42,6 +42,46 @@ function Figure({ image, className }: { image: Img; className?: string }) {
 }
 
 /**
+ * 섹션 제목 아래에 놓이는 컨셉 사진과 삽화.
+ * 사진은 세로형(1 : 1.15)으로 두 장씩 나란히, 삽화는 그 아래 한 장씩 넓게.
+ */
+export function FigureStack({
+  figures,
+  className,
+}: {
+  figures: PlacedFigure[];
+  className?: string;
+}) {
+  const photos = figures.filter((figure) => figure.kind === "photo");
+  const illustrations = figures.filter((figure) => figure.kind === "illustration");
+  if (figures.length === 0) return null;
+
+  return (
+    <div className={cn("flex flex-col gap-9", className)}>
+      {photos.length ? (
+        <div className="grid max-w-2xl grid-cols-2 gap-3 sm:gap-5">
+          {photos.map((figure, index) => (
+            <Reveal key={figure.image.src} delay={stagger(index)}>
+              <RectImage
+                image={figure.image}
+                ratio="window"
+                sizes="(min-width: 768px) 21rem, 45vw"
+                zoom={{ gallery: photos.map((photo) => photo.image), index }}
+              />
+            </Reveal>
+          ))}
+        </div>
+      ) : null}
+      {illustrations.map((figure) => (
+        <Reveal key={figure.image.src}>
+          <Figure image={figure.image} />
+        </Reveal>
+      ))}
+    </div>
+  );
+}
+
+/**
  * 이름 + 설명이 반복되는 구조.
  * 원고의 「주요 진료 질환」·「치료 방향」이 전부 이 모양이라 한 컴포넌트로 받는다.
  */
@@ -52,8 +92,8 @@ function DefinitionRows({
 }: {
   items: { name: string; code?: string; body: string }[];
   marker?: boolean;
-  /** 항목 이름이 맞는 삽화는 그 항목 설명 아래에 붙는다 */
-  figures?: PlacedIllustration[];
+  /** 항목 이름이 맞는 사진 · 삽화는 그 항목 설명 아래에 붙는다 */
+  figures?: PlacedFigure[];
 }) {
   return (
     <dl className="border-t border-border">
@@ -78,13 +118,24 @@ function DefinitionRows({
             {item.body}
             {figures
               .filter((figure) => figure.item === item.name)
-              .map((figure) => (
-                <Figure
-                  key={figure.image.src}
-                  image={figure.image}
-                  className="mt-6"
-                />
-              ))}
+              .map((figure) =>
+                figure.kind === "photo" ? (
+                  <RectImage
+                    key={figure.image.src}
+                    image={figure.image}
+                    ratio="window"
+                    className="mt-6 max-w-[16rem]"
+                    sizes="16rem"
+                    zoom={{ gallery: [figure.image], index: 0 }}
+                  />
+                ) : (
+                  <Figure
+                    key={figure.image.src}
+                    image={figure.image}
+                    className="mt-6"
+                  />
+                ),
+              )}
           </dd>
         </Reveal>
       ))}
@@ -117,8 +168,8 @@ export function SectionBlock({
   figures = [],
 }: {
   section: Section;
-  /** 이 섹션 자리에 놓을 삽화 (lib/illustrations.ts 에서 정한 자리) */
-  figures?: PlacedIllustration[];
+  /** 이 섹션 자리에 놓을 컨셉 사진 · 삽화 (lib/photos.ts, lib/illustrations.ts) */
+  figures?: PlacedFigure[];
 }) {
   if (section.kind === "quote") {
     return (
@@ -135,14 +186,11 @@ export function SectionBlock({
         title={section.title}
         lede={"intro" in section ? section.intro : undefined}
       />
-      {/* 항목을 정하지 않은 삽화는 섹션 제목 바로 아래 */}
-      {figures
-        .filter((figure) => !figure.item)
-        .map((figure) => (
-          <Reveal key={figure.image.src} className="mt-9">
-            <Figure image={figure.image} />
-          </Reveal>
-        ))}
+      {/* 항목을 정하지 않은 사진 · 삽화는 섹션 제목 바로 아래 */}
+      <FigureStack
+        figures={figures.filter((figure) => !figure.item)}
+        className="mt-9"
+      />
       <div className="mt-9">
         <SectionBody section={section} figures={figures} />
       </div>
@@ -158,7 +206,7 @@ function SectionBody({
   figures,
 }: {
   section: Section;
-  figures: PlacedIllustration[];
+  figures: PlacedFigure[];
 }) {
   switch (section.kind) {
     case "prose": {

@@ -3,52 +3,76 @@ import path from "node:path";
 
 import type { Img } from "@/lib/images";
 import { illustrationSpecs } from "@/lib/illustrations";
+import { photoSpecs } from "@/lib/photos";
 
 /**
- * 폴더에 실제로 들어 있는 삽화만 골라 자리 정보와 함께 돌려준다.
+ * 폴더에 실제로 들어 있는 삽화 · 컨셉 사진만 골라 자리 정보와 함께 돌려준다.
+ * 등록부: lib/illustrations.ts (삽화), lib/photos.ts (컨셉 사진)
  *
  * 서버에서만 실행된다(파일 시스템을 읽는다). 개발 서버에서는 요청마다 다시 읽으므로
  * 파일을 넣고 새로고침하면 바로 보이고, 배포본은 빌드할 때 한 번 읽는다.
  */
 
-const DIR = path.join(process.cwd(), "public", "images", "illustrations");
+const PUBLIC = path.join(process.cwd(), "public");
 const EXTS = ["png", "jpg", "jpeg", "webp"] as const;
 
-export type PlacedIllustration = {
+export type PlacedFigure = {
+  kind: "illustration" | "photo";
   section: string;
   item?: string;
   image: Img;
 };
 
-export function illustrationsForPage(page: string): PlacedIllustration[] {
-  const placed: PlacedIllustration[] = [];
+export type PageMedia = {
+  /** 컨셉 사진 히어로. 없으면 페이지에 적힌 원래 사진을 쓴다. */
+  hero?: Img;
+  /** 섹션 · 항목 자리에 놓일 사진과 삽화. 사진이 삽화보다 앞에 온다. */
+  figures: PlacedFigure[];
+};
 
+export function mediaForPage(page: string): PageMedia {
+  const photos: PlacedFigure[] = [];
+  let hero: Img | undefined;
+
+  for (const spec of photoSpecs) {
+    if (spec.page !== page) continue;
+    const image = loadImage("images/photos", `photo-${spec.id}`, spec.alt);
+    if (!image) continue;
+    if (spec.section === "hero") hero = image;
+    else photos.push({ kind: "photo", section: spec.section, item: spec.item, image });
+  }
+
+  const illustrations: PlacedFigure[] = [];
   for (const spec of illustrationSpecs) {
     const places = spec.places.filter((place) => place.page === page);
     if (places.length === 0) continue;
-
-    const file = findFile(spec.id);
-    if (!file) continue;
-
-    const size = readSize(path.join(DIR, file));
-    const image: Img = {
-      src: `/images/illustrations/${file}`,
-      alt: spec.alt,
-      ...(size ?? {}),
-    };
-
+    const image = loadImage("images/illustrations", `illust-${spec.id}`, spec.alt);
+    if (!image) continue;
     for (const place of places) {
-      placed.push({ section: place.section, item: place.item, image });
+      illustrations.push({
+        kind: "illustration",
+        section: place.section,
+        item: place.item,
+        image,
+      });
     }
   }
 
-  return placed;
+  return { hero, figures: [...photos, ...illustrations] };
 }
 
-function findFile(id: string): string | null {
+/** 허브 카드처럼 다른 페이지의 히어로 사진만 필요할 때 */
+export function heroPhotoFor(page: string): Img | undefined {
+  return mediaForPage(page).hero;
+}
+
+/** public/<folder>/<base>.<ext> 를 찾아 크기까지 읽은 Img 로 돌려준다. */
+function loadImage(folder: string, base: string, alt: string): Img | null {
   for (const ext of EXTS) {
-    const name = `illust-${id}.${ext}`;
-    if (fs.existsSync(path.join(DIR, name))) return name;
+    const file = path.join(PUBLIC, folder, `${base}.${ext}`);
+    if (!fs.existsSync(file)) continue;
+    const size = readSize(file);
+    return { src: `/${folder}/${base}.${ext}`, alt, ...(size ?? {}) };
   }
   return null;
 }

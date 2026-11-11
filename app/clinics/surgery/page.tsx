@@ -12,6 +12,7 @@ export const metadata: Metadata = {
 export default function SurgeryHubPage() {
   return (
     <ClinicHubLayout
+      href={surgeryHub.href}
       title={surgeryHub.headline}
       lede={surgeryHub.lede}
       hero={surgeryHub.hero}

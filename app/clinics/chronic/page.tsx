@@ -12,6 +12,7 @@ export const metadata: Metadata = {
 export default function ChronicHubPage() {
   return (
     <ClinicHubLayout
+      href={chronicHub.href}
       title={chronicHub.headline}
       lede={chronicHub.lede}
       hero={chronicHub.hero}

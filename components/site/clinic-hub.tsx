@@ -9,6 +9,8 @@ import { stagger } from "@/lib/motion";
 import { Section, SectionHeader } from "./blocks/primitives";
 import { CtaBand } from "./blocks/cta-band";
 import { EquipmentGrid } from "./blocks/equipment-grid";
+import { FigureStack } from "./blocks/sections";
+import { heroPhotoFor, mediaForPage } from "@/lib/media.server";
 
 export type HubChild = {
   href: string;
@@ -28,6 +30,7 @@ export type HubChild = {
  * 데 빠르다.
  */
 export function ClinicHubLayout({
+  href,
   eyebrow,
   title,
   lede,
@@ -42,6 +45,8 @@ export function ClinicHubLayout({
   equipmentTitle = "사용하는 장비",
   equipmentLede,
 }: {
+  /** 이 허브의 주소. 컨셉 사진(lib/photos.ts)을 찾는 데 쓴다. */
+  href: string;
   eyebrow?: string;
   title: string;
   lede: string;
@@ -57,13 +62,19 @@ export function ClinicHubLayout({
   equipmentTitle?: string;
   equipmentLede?: string;
 }) {
+  // 컨셉 사진이 들어오면 히어로 · 하위 클리닉 카드 · 「일하는 방식」 사진이 바뀐다
+  const media = mediaForPage(href);
+  const principleFigures = media.figures.filter(
+    (figure) => figure.section === "principles",
+  );
+
   return (
     <article>
       <PageHero
         eyebrow={eyebrow}
         title={title}
         lede={lede}
-        image={hero}
+        image={media.hero ?? hero}
         crumbs={crumbs}
       />
 
@@ -84,7 +95,7 @@ export function ClinicHubLayout({
                   className="group grid items-center gap-8 py-9 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-ring md:grid-cols-[minmax(0,13rem)_1fr] md:gap-12"
                 >
                   <RectImage
-                    image={child.image}
+                    image={heroPhotoFor(child.href) ?? child.image}
                     ratio="wide"
                     className="transition-opacity group-hover:opacity-90"
                     sizes="(min-width: 768px) 13rem, 60vw"
@@ -127,6 +138,7 @@ export function ClinicHubLayout({
         <Section tone="mist">
           <div className="shell">
             <SectionHeader title={principlesTitle} />
+            <FigureStack figures={principleFigures} className="mt-12" />
             <ul className="mt-12 grid list-none gap-px overflow-hidden rounded-md border border-border bg-border md:grid-cols-3">
               {principles.map((item) => (
                 <li key={item.title} className="bg-card p-7">
