@@ -24,6 +24,38 @@ type ArchImageProps = {
   zoom?: ZoomProp;
 };
 
+/** 프레임 비율(가로 ÷ 세로) */
+const frameAspect = {
+  tall: 1 / 1.45,
+  window: 1 / 1.15,
+  wide: 1 / 0.72,
+  square: 1,
+} as const;
+
+/**
+ * object-cover 로 잘리는 사진의 sizes 를 실제로 그려지는 너비로 고친다.
+ *
+ * sizes 는 「프레임 너비」를 말하지만, 가로로 긴 사진을 세로 프레임에 채우면
+ * 사진은 프레임보다 훨씬 넓게 그려지고 양옆이 잘린다. 그대로 두면 브라우저가
+ * 프레임 너비만큼 작은 파일을 받아 크게 늘려 흐려진다.
+ * 그래서 사진이 프레임보다 가로로 긴 만큼 sizes 의 각 값에 배수를 곱한다.
+ * 사진 크기를 모르면 그대로 둔다.
+ */
+function coverSizes(sizes: string, image: Img, frame: number): string {
+  if (!image.width || !image.height) return sizes;
+  const factor = image.width / image.height / frame;
+  if (factor <= 1.05) return sizes;
+  const scale = Math.min(factor, 4);
+  return sizes
+    .split(",")
+    .map((part) =>
+      part.replace(/(\d+(?:\.\d+)?)(rem|px|vw)\s*$/, (_, value: string, unit: string) =>
+        `${Math.round(parseFloat(value) * scale * 100) / 100}${unit}`,
+      ),
+    )
+    .join(",");
+}
+
 const ratioClass = {
   tall: "aspect-[1/1.45]",
   window: "aspect-[1/1.15]",
@@ -62,7 +94,7 @@ export function ArchImage({
         alt={image.alt}
         fill
         priority={priority}
-        sizes={sizes}
+        sizes={coverSizes(sizes, image, frameAspect[ratio])}
         className="object-cover"
       />
       {/* 윤곽선은 사진 위에 따로 얹는다. inset ring 은 배경 레이어에 그려져
@@ -153,7 +185,7 @@ export function RectImage({
         alt={image.alt}
         fill
         priority={priority}
-        sizes={sizes}
+        sizes={auto ? sizes : coverSizes(sizes, image, frameAspect[ratio === "auto" ? "window" : ratio])}
         style={objectPosition ? { objectPosition } : undefined}
         className="object-cover"
       />

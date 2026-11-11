@@ -1,5 +1,5 @@
 import type { ClinicPage } from "@/lib/content/types";
-import { equipment, facility } from "@/lib/images";
+import { checkupReport, equipment, facility } from "@/lib/images";
 
 /** 원고 「7. 건강검진 센터」 */
 export const checkupPage: ClinicPage = {
@@ -174,6 +174,7 @@ export const checkupPage: ClinicPage = {
       kind: "list",
       id: "report",
       title: "신원당 건강검진 리포트",
+      slides: checkupReport,
       intro:
         "검진 결과를 구두 설명에서 끝내지 않습니다. 아이의 건강 상태를 한눈에 파악할 수 있는 맞춤형 리포트를 별도로 제작해 드립니다.",
       items: [

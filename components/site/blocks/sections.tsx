@@ -6,6 +6,7 @@ import type { Img } from "@/lib/images";
 import type { PlacedFigure } from "@/lib/media.server";
 import { RectImage } from "./arch";
 import { EquipmentGrid } from "./equipment-grid";
+import { ImageSlider } from "./slider";
 import { Reveal } from "./reveal";
 import { stagger } from "@/lib/motion";
 import { Eyebrow, Note, PullQuote, SectionHeader } from "./primitives";
@@ -186,6 +187,13 @@ export function SectionBlock({
         title={section.title}
         lede={"intro" in section ? section.intro : undefined}
       />
+      {section.slides?.length ? (
+        <ImageSlider
+          images={section.slides}
+          label={`${section.title} 예시`}
+          className="mt-9"
+        />
+      ) : null}
       {/* 항목을 정하지 않은 사진 · 삽화는 섹션 제목 바로 아래 */}
       <FigureStack
         figures={figures.filter((figure) => !figure.item)}

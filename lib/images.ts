@@ -408,3 +408,23 @@ export const hero = {
   checkup: facility.labRoom[0],
   care: facility.catHotel[2],
 } satisfies Record<string, Img>;
+
+/* ------------------------------------------------------------------ */
+/* 건강검진 리포트 예시 (건강검진 센터 「신원당 건강검진 리포트」)        */
+/* ------------------------------------------------------------------ */
+
+/** 실제 발송되는 리포트를 캡처한 것. 순서대로 넘겨 본다. */
+export const checkupReport: Img[] = [
+  { src: "/images/report/report-1.png", alt: "건강검진 리포트 1쪽 예시 — 표지, 종합 건강검진 결과 보고서", width: 3784, height: 2004 },
+  { src: "/images/report/report-2.png", alt: "건강검진 리포트 2쪽 예시 — 품종 · 나이 · 성별 기반 리스크 분석", width: 3794, height: 2124 },
+  { src: "/images/report/report-3.png", alt: "건강검진 리포트 3쪽 예시 — 나이에 맞춘 관리 포인트", width: 3784, height: 2110 },
+  { src: "/images/report/report-4.png", alt: "건강검진 리포트 4쪽 예시 — 신체검사: 체중과 신체충실지수(BCS)", width: 3794, height: 2114 },
+  { src: "/images/report/report-5.png", alt: "건강검진 리포트 5쪽 예시 — 신체검사: 피부 · 구강 · 이과", width: 3800, height: 2112 },
+  { src: "/images/report/report-6.png", alt: "건강검진 리포트 6쪽 예시 — 혈액검사: CBC 백혈구 계열", width: 3798, height: 2126 },
+  { src: "/images/report/report-7.png", alt: "건강검진 리포트 7쪽 예시 — 혈액검사: 신장 기능 검사", width: 3800, height: 2124 },
+  { src: "/images/report/report-8.png", alt: "건강검진 리포트 8쪽 예시 — 흉부 방사선 검사", width: 3796, height: 2118 },
+  { src: "/images/report/report-9.png", alt: "건강검진 리포트 9쪽 예시 — 초음파 검사: 간과 담낭", width: 3796, height: 2114 },
+  { src: "/images/report/report-10.png", alt: "건강검진 리포트 10쪽 예시 — 종합 소견", width: 3802, height: 2120 },
+  { src: "/images/report/report-11.png", alt: "건강검진 리포트 11쪽 예시 — 치료 및 관리 계획", width: 3798, height: 2120 },
+  { src: "/images/report/report-12.png", alt: "건강검진 리포트 12쪽 예시 — 맺음말과 병원 안내", width: 3804, height: 2130 },
+];

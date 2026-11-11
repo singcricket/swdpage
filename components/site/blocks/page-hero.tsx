@@ -48,7 +48,7 @@ export function PageHero({
 }) {
   return (
     <div className={cn("border-b border-border bg-mist/35", className)}>
-      <div className="shell grid items-center gap-10 py-14 lg:grid-cols-[1fr_minmax(0,20rem)] lg:gap-16 lg:py-20">
+      <div className="shell grid items-center gap-10 py-14 lg:grid-cols-[1fr_minmax(0,23rem)] lg:gap-16 lg:py-20">
         <div>
           {crumbs?.length ? (
             <nav aria-label="현재 위치" className="mb-6">
@@ -89,14 +89,14 @@ export function PageHero({
             내용에 따라 결정되면 서로를 참조해 0 이 된다. */}
         <Reveal
           variant="arch"
-          className="w-[15rem] justify-self-center sm:w-[17rem] lg:w-full lg:justify-self-end"
+          className="w-[17rem] justify-self-center sm:w-[19rem] lg:w-full lg:justify-self-end"
         >
           <ArchImage
             image={image}
             ratio="tall"
             priority
             outlined
-            sizes="(min-width: 1024px) 20rem, 17rem"
+            sizes="(min-width: 1024px) 23rem, 19rem"
           />
         </Reveal>
       </div>

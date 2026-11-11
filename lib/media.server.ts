@@ -72,7 +72,11 @@ function loadImage(folder: string, base: string, alt: string): Img | null {
     const file = path.join(PUBLIC, folder, `${base}.${ext}`);
     if (!fs.existsSync(file)) continue;
     const size = readSize(file);
-    return { src: `/${folder}/${base}.${ext}`, alt, ...(size ?? {}) };
+    // 같은 이름으로 파일을 바꿔 넣어도 새 사진이 나오도록 주소에 파일 버전을 붙인다.
+    // 이미지 최적화 캐시가 주소 기준으로 4시간 동안 남기 때문이다.
+    const stat = fs.statSync(file);
+    const version = `${stat.size.toString(36)}${Math.round(stat.mtimeMs).toString(36)}`;
+    return { src: `/${folder}/${base}.${ext}?v=${version}`, alt, ...(size ?? {}) };
   }
   return null;
 }
