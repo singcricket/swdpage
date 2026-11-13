@@ -76,26 +76,26 @@ export const team = {
   choiYunho: {
     src: "/images/team/choi-yunho2.png",
     alt: "대표원장 최윤호",
-    width: 606,
-    height: 900,
+    width: 1792,
+    height: 2394,
   },
   kimBangchang: {
     src: "/images/team/kim-bangchang3.png",
     alt: "원장 김방창",
-    width: 606,
-    height: 900,
+    width: 1760,
+    height: 2384,
   },
   leeNayoung: {
     src: "/images/team/lee-nayoung2.png",
     alt: "부원장 이나영",
-    width: 606,
-    height: 900,
+    width: 1760,
+    height: 2420,
   },
   kimMincheol: {
     src: "/images/team/kim-mincheol.png",
     alt: "진료과장 김민철",
-    width: 606,
-    height: 900,
+    width: 1728,
+    height: 2450,
   },
 } satisfies Record<string, Img>;
 
@@ -165,7 +165,7 @@ export const equipment = {
     alt: "혈액가스 분석기 IDEXX VetStat",
   },
   labVcheck: {
-    src: "/images/equipment/lab-bionote-vcheck-v200.jpg",
+    src: "/images/equipment/lab-bionote-vcheck-v200.png",
     alt: "호르몬 및 특수 검사기 BIONOTE Vcheck V200",
   },
   otoscope: {

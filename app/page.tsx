@@ -4,8 +4,8 @@ import { Phone, ArrowRight, ArrowUpRight, Clock, MapPin, Car } from "lucide-reac
 import { contact, hours, directions, credentials } from "@/lib/site";
 import { greeting, mission } from "@/lib/content/about";
 import { vets } from "@/lib/content/team";
-import { facility } from "@/lib/images";
-import { ArchImage, RectImage } from "@/components/site/blocks/arch";
+import { facility, team } from "@/lib/images";
+import { RectImage } from "@/components/site/blocks/arch";
 import { Reveal } from "@/components/site/blocks/reveal";
 import { stagger } from "@/lib/motion";
 import {
@@ -47,7 +47,7 @@ function HomeHero() {
         className="pointer-events-none absolute inset-x-0 top-0 h-[38rem] bg-linear-to-b from-mist/70 to-transparent"
       />
 
-      <div className="shell relative grid items-center gap-14 py-16 lg:grid-cols-[1fr_minmax(0,24rem)] lg:gap-20 lg:py-28">
+      <div className="shell relative grid items-center gap-14 py-16 lg:grid-cols-[1fr_minmax(0,28rem)] lg:gap-20 lg:py-28">
         <div>
           <Eyebrow>
             {hours.summary} · {directions.transit}
@@ -95,18 +95,13 @@ function HomeHero() {
           </ul>
         </div>
 
-        {/* 너비는 래퍼가 정한다. 프레임이 w-full 이면서 래퍼 너비가
-            내용에 따라 결정되면 서로를 참조해 0 이 된다. */}
-        <Reveal
-          variant="arch"
-          className="w-[17rem] justify-self-center sm:w-[20rem] lg:w-full lg:justify-self-end"
-        >
-          <ArchImage
-            image={facility.waiting[0]}
-            ratio="tall"
+        <Reveal className="w-full max-w-[36rem] lg:max-w-none">
+          <RectImage
+            image={facility.mottoWall[0]}
+            ratio="window"
             priority
-            outlined
-            sizes="(min-width: 1024px) 24rem, 20rem"
+            className="aspect-[1/0.72] lg:aspect-[1/1.15]"
+            sizes="(min-width: 1024px) 28rem, 92vw"
           />
         </Reveal>
       </div>
@@ -121,9 +116,9 @@ function Greeting() {
     <Section tone="mist">
       <div className="shell grid gap-12 lg:grid-cols-[minmax(0,18rem)_1fr] lg:gap-20">
         <Reveal className="w-[13rem] justify-self-center lg:w-full lg:justify-self-start">
-          <ArchImage
-            image={facility.mottoWall[0]}
-            ratio="window"
+          <RectImage
+            image={team.choiYunho}
+            ratio="auto"
             sizes="(min-width: 1024px) 18rem, 13rem"
           />
         </Reveal>

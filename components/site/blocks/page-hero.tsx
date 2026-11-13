@@ -2,7 +2,7 @@ import Link from "next/link";
 
 import { cn } from "@/lib/utils";
 import type { Img } from "@/lib/images";
-import { ArchImage } from "./arch";
+import { RectImage } from "./arch";
 import { Reveal } from "./reveal";
 import { Eyebrow } from "./primitives";
 
@@ -28,8 +28,8 @@ function toSentences(headline: string) {
 /**
  * 페이지가 열리는 방식.
  *
- * 카피를 먼저 읽고, 그 옆에서 아치가 위에서 아래로 열리며 공간을 보여준다.
- * 건물에 들어설 때의 순서를 그대로 옮겼다.
+ * 카피를 먼저 읽고, 그 옆에서 사진이 공간을 보여준다.
+ * 둥근 사각 프레임. 모바일에서는 가로로 넓게, 넓은 화면에서는 세로로 조금 긴 비율.
  */
 export function PageHero({
   eyebrow,
@@ -48,7 +48,7 @@ export function PageHero({
 }) {
   return (
     <div className={cn("border-b border-border bg-mist/35", className)}>
-      <div className="shell grid items-center gap-10 py-14 lg:grid-cols-[1fr_minmax(0,23rem)] lg:gap-16 lg:py-20">
+      <div className="shell grid items-center gap-10 py-14 lg:grid-cols-[1fr_minmax(0,28rem)] lg:gap-16 lg:py-20">
         <div>
           {crumbs?.length ? (
             <nav aria-label="현재 위치" className="mb-6">
@@ -85,18 +85,13 @@ export function PageHero({
           {lede ? <p className="type-lede measure mt-7">{lede}</p> : null}
         </div>
 
-        {/* 너비는 래퍼가 정한다. 프레임이 w-full 이면서 래퍼 너비가
-            내용에 따라 결정되면 서로를 참조해 0 이 된다. */}
-        <Reveal
-          variant="arch"
-          className="w-[17rem] justify-self-center sm:w-[19rem] lg:w-full lg:justify-self-end"
-        >
-          <ArchImage
+        <Reveal className="w-full max-w-[36rem] lg:max-w-none">
+          <RectImage
             image={image}
-            ratio="tall"
+            ratio="window"
             priority
-            outlined
-            sizes="(min-width: 1024px) 23rem, 19rem"
+            className="aspect-[1/0.72] lg:aspect-[1/1.15]"
+            sizes="(min-width: 1024px) 28rem, 92vw"
           />
         </Reveal>
       </div>

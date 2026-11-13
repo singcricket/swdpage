@@ -48,7 +48,7 @@ export const catPage: ClinicPage = {
         "도착해서 기다리고, 진료받고, 머무는 동안까지 개와 마주치지 않도록 공간을 나눴습니다.",
       images: [
         facility.catWaiting[1],
-        facility.catWaiting[3],
+        { ...facility.examRoom[4], alt: "고양이 진료 전용 진료실" },
         facility.catHotel[2],
       ],
     },

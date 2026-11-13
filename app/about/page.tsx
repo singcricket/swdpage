@@ -7,7 +7,7 @@ import { greeting, mission, motto } from "@/lib/content/about";
 import { vets } from "@/lib/content/team";
 import { facility, brand } from "@/lib/images";
 import { PageHero } from "@/components/site/blocks/page-hero";
-import { ArchImage, RectImage } from "@/components/site/blocks/arch";
+import { RectImage } from "@/components/site/blocks/arch";
 import { Reveal } from "@/components/site/blocks/reveal";
 import { stagger } from "@/lib/motion";
 import {
@@ -65,7 +65,7 @@ export default function AboutPage() {
           </div>
 
           <Reveal className="w-60 justify-self-center lg:w-full lg:justify-self-end">
-            <ArchImage
+            <RectImage
               image={director.portrait}
               ratio="tall"
               caption={`${director.role} ${director.name}`}

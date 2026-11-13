@@ -20,6 +20,8 @@ export type PlacedFigure = {
   kind: "illustration" | "photo";
   section: string;
   item?: string;
+  /** 잘릴 때 남길 위치 (object-position) */
+  focus?: string;
   image: Img;
 };
 
@@ -39,7 +41,7 @@ export function mediaForPage(page: string): PageMedia {
     const image = loadImage("images/photos", `photo-${spec.id}`, spec.alt);
     if (!image) continue;
     if (spec.section === "hero") hero = image;
-    else photos.push({ kind: "photo", section: spec.section, item: spec.item, image });
+    else photos.push({ kind: "photo", section: spec.section, item: spec.item, focus: spec.focus, image });
   }
 
   const illustrations: PlacedFigure[] = [];

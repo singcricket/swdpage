@@ -28,7 +28,7 @@ export default function EquipmentPage() {
       <PageHero
         title="보이지 않는 것을 보는 기술"
         lede={`진단의 정확성을 높이고, 원내 검사로 기다리는 시간을 줄입니다. 현재 ${equipmentCount}종의 장비를 운용하고 있습니다.`}
-        image={facility.treatmentRoom[3]}
+        image={facility.surgeryRoom[2]}
         crumbs={[
           { label: "병원 소개", href: "/about" },
           { label: "의료장비", href: "/about/equipment" },

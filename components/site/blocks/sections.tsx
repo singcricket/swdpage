@@ -42,9 +42,19 @@ function Figure({ image, className }: { image: Img; className?: string }) {
   );
 }
 
+/** 가로로 찍은 사진인가. 크기를 모르면 가로로 본다(대부분의 촬영본). */
+function isLandscape(image: Img) {
+  return !image.width || !image.height || image.width >= image.height;
+}
+
 /**
  * 섹션 제목 아래에 놓이는 컨셉 사진과 삽화.
- * 사진은 세로형(1 : 1.15)으로 두 장씩 나란히, 삽화는 그 아래 한 장씩 넓게.
+ *
+ * 사진은 찍은 방향을 따른다. 세로 프레임에 가로 사진을 넣으면 장면 절반이 잘린다.
+ *   한 장        찍은 방향과 상관없이 본문 폭(슬라이드와 같은 46rem)을 다 쓰는 가로 프레임.
+ *                세로 사진은 위아래가 조금 잘리고, 누르면 원본 전체를 크게 볼 수 있다.
+ *   두 장 이상    두 장씩 나란히. 모두 가로면 가로 프레임, 하나라도 세로면 세로 프레임
+ * 삽화는 그 아래 한 장씩 넓게.
  */
 export function FigureStack({
   figures,
@@ -59,14 +69,24 @@ export function FigureStack({
 
   return (
     <div className={cn("flex flex-col gap-9", className)}>
-      {photos.length ? (
-        <div className="grid max-w-2xl grid-cols-2 gap-3 sm:gap-5">
+      {photos.length === 1 ? (
+        <Reveal className="max-w-[46rem]">
+          <RectImage
+            image={photos[0].image}
+            ratio="wide"
+            objectPosition={photos[0].focus}
+            sizes="(min-width: 1024px) 46rem, 92vw"
+            zoom={{ gallery: [photos[0].image], index: 0 }}
+          />
+        </Reveal>
+      ) : photos.length > 1 ? (
+        <div className="grid max-w-[46rem] grid-cols-2 gap-3 sm:gap-5">
           {photos.map((figure, index) => (
             <Reveal key={figure.image.src} delay={stagger(index)}>
               <RectImage
                 image={figure.image}
-                ratio="window"
-                sizes="(min-width: 768px) 21rem, 45vw"
+                ratio={photos.every((photo) => isLandscape(photo.image)) ? "wide" : "window"}
+                sizes="(min-width: 1024px) 22.5rem, 45vw"
                 zoom={{ gallery: photos.map((photo) => photo.image), index }}
               />
             </Reveal>
@@ -124,9 +144,12 @@ function DefinitionRows({
                   <RectImage
                     key={figure.image.src}
                     image={figure.image}
-                    ratio="window"
-                    className="mt-6 max-w-[16rem]"
-                    sizes="16rem"
+                    ratio={isLandscape(figure.image) ? "wide" : "window"}
+                    className={cn(
+                      "mt-6",
+                      isLandscape(figure.image) ? "max-w-[26rem]" : "max-w-[16rem]",
+                    )}
+                    sizes={isLandscape(figure.image) ? "26rem" : "16rem"}
                     zoom={{ gallery: [figure.image], index: 0 }}
                   />
                 ) : (

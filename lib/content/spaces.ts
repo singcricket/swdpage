@@ -166,7 +166,7 @@ export const spaceGroups: SpaceGroup[] = [
         name: "상담실",
         body: "호텔·유치원을 이용하는 아이의 보호자와 마주 앉아 이야기하는 별도의 방입니다. 입실 전 건강 상태와 예방접종, 먹는 약과 식습관, 성격과 주의할 점을 미리 여쭙고, 머무는 동안의 생활과 퇴실 시 전달 사항을 이곳에서 안내해 드립니다.",
         floor: "1F",
-        images: [facility.consultRoom[0], facility.consultRoom[1]],
+        images: [facility.consultRoom[0]],
       },
       {
         id: "cat-hotel",

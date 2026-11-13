@@ -15,6 +15,8 @@
  *            "principles" 허브 페이지(만성질환 · 외과 센터)의 「일하는 방식」 섹션
  *            그 밖에는     섹션 id. 섹션 제목 바로 아래에 놓인다.
  *   item     항목 이름. 적으면 그 항목 설명 바로 아래에 놓인다 (「치료 방향」 같은 이름-설명 목록).
+ *   focus    프레임에 사진이 잘려 들어갈 때 남길 위치 (CSS object-position). 기본은 가운데.
+ *            예: "50% 80%" 는 아래쪽을 남긴다.
  *
  * alt 는 스크린리더·검색엔진이 읽는 사진 설명이다. 실제 사진과 다르면 여기만 고친다.
  */
@@ -25,6 +27,7 @@ export type PhotoSpec = {
   page: string;
   section: string;
   item?: string;
+  focus?: string;
   alt: string;
 };
 
@@ -92,7 +95,7 @@ export const photoSpecs: PhotoSpec[] = [
 
   /* 일반외과 */
   { id: "GS-1", page: GENERAL, section: "hero", alt: "수술대를 사이에 두고 두 수의사가 마주 보며 수술하는 모습." },
-  { id: "GS-2", page: GENERAL, section: "monitoring", alt: "마취 담당 스태프가 모니터의 파형을 보며 마취 기록지에 수치를 적는 모습." },
+  { id: "GS-2", page: GENERAL, section: "monitoring", focus: "50% 80%", alt: "마취 담당 스태프가 모니터의 파형을 보며 마취 기록지에 수치를 적는 모습." },
   { id: "GS-3", page: GENERAL, section: "anesthesia", alt: "마취에서 깨어나 따뜻한 담요에 싸인 강아지 곁에서 스태프가 체온을 확인하는 모습." },
 
   /* 종양 클리닉 */

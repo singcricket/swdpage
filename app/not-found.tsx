@@ -5,7 +5,7 @@ import { Phone, ArrowRight } from "lucide-react";
 import { contact } from "@/lib/site";
 import { services } from "@/lib/content/services";
 import { facility } from "@/lib/images";
-import { ArchImage } from "@/components/site/blocks/arch";
+import { RectImage } from "@/components/site/blocks/arch";
 import { Eyebrow } from "@/components/site/blocks/primitives";
 
 export const metadata: Metadata = {
@@ -72,10 +72,9 @@ export default function NotFound() {
       </div>
 
       <div className="w-[15rem] justify-self-center lg:w-full lg:justify-self-end">
-        <ArchImage
+        <RectImage
           image={facility.entrance[0]}
-          ratio="tall"
-          outlined
+          ratio="window"
           sizes="(min-width: 1024px) 20rem, 15rem"
         />
       </div>
