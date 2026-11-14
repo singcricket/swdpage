@@ -144,12 +144,11 @@ function DefinitionRows({
                   <RectImage
                     key={figure.image.src}
                     image={figure.image}
-                    ratio={isLandscape(figure.image) ? "wide" : "window"}
-                    className={cn(
-                      "mt-6",
-                      isLandscape(figure.image) ? "max-w-[26rem]" : "max-w-[16rem]",
-                    )}
-                    sizes={isLandscape(figure.image) ? "26rem" : "16rem"}
+                    // 아래 삽화와 같은 폭(설명 칸 전체)의 가로 프레임
+                    ratio="wide"
+                    objectPosition={figure.focus}
+                    className="mt-6"
+                    sizes="(min-width: 1280px) 42rem, (min-width: 768px) 60vw, 92vw"
                     zoom={{ gallery: [figure.image], index: 0 }}
                   />
                 ) : (

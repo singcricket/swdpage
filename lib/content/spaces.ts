@@ -37,14 +37,14 @@ export const spaceGroups: SpaceGroup[] = [
         name: "접수 데스크",
         body: "곡선으로 이어진 데스크에서 접수와 안내를 받습니다. 진료실과 대기 공간이 한눈에 보이는 자리에 있어 순서를 기다리는 동안에도 상황을 알 수 있습니다.",
         floor: "2F",
-        images: [facility.reception[0], facility.reception[3]],
+        images: [facility.reception[6], facility.reception[2]],
       },
       {
         id: "waiting",
         name: "대기실",
         body: "반원 창이 늘어선 대기 공간입니다. 창가를 따라 긴 벤치를 두어 이동장을 올려두거나 아이를 앉힐 수 있고, 바깥 빛이 들어와 병원 특유의 답답함을 덜었습니다.",
         floor: "2F",
-        images: [facility.waiting[0], facility.waiting[5], facility.waiting[13]],
+        images: [facility.waiting[2], facility.waiting[4], facility.waiting[8]],
       },
       {
         id: "cat-waiting",
