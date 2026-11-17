@@ -17,7 +17,7 @@ export function SiteFooter() {
   const year = new Date().getFullYear();
 
   return (
-    <footer className="border-t border-border bg-mist/45">
+    <footer className="border-t border-border bg-mist">
       <div className="shell grid gap-12 py-14 lg:grid-cols-[minmax(0,22rem)_1fr] lg:gap-16 lg:py-20">
         {/* 병원 정보 */}
         <div>

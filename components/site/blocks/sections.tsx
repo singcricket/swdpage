@@ -203,7 +203,7 @@ export function SectionBlock({
   }
 
   return (
-    <div className="scroll-mt-28" id={section.id}>
+    <div className="scroll-mt-36" id={section.id}>
       <SectionHeader
         eyebrow={section.eyebrow}
         title={section.title}

@@ -1,10 +1,11 @@
 import Link from "next/link";
 
+import Image from "next/image";
+
 import { cn } from "@/lib/utils";
 import type { Img } from "@/lib/images";
-import { RectImage } from "./arch";
-import { Reveal } from "./reveal";
-import { Eyebrow } from "./primitives";
+import { heroEyebrowEn } from "@/lib/site";
+import { SectionTabs } from "./section-tabs";
 
 type Crumb = { label: string; href: string };
 
@@ -26,10 +27,11 @@ function toSentences(headline: string) {
 }
 
 /**
- * 페이지가 열리는 방식.
+ * 페이지가 열리는 방식 (2026-11 개편안).
  *
- * 카피를 먼저 읽고, 그 옆에서 사진이 공간을 보여준다.
- * 둥근 사각 프레임. 모바일에서는 가로로 넓게, 넓은 화면에서는 세로로 조금 긴 비율.
+ * 왼쪽은 남색 바탕에 경로 · 금색 눈썹 · 제목 · 소개글, 오른쪽은 화면 끝까지 꽉 찬 사진.
+ * 그 아래 같은 메뉴의 다른 페이지로 가는 탭이 붙는다.
+ * 모바일에서는 글 → 사진 순으로 쌓인다.
  */
 export function PageHero({
   eyebrow,
@@ -46,35 +48,39 @@ export function PageHero({
   crumbs?: Crumb[];
   className?: string;
 }) {
+  const current = crumbs?.at(-1)?.href;
+  const label = (current && heroEyebrowEn[current]) || eyebrow;
+
   return (
-    <div className={cn("border-b border-border bg-mist/35", className)}>
-      <div className="shell grid items-center gap-10 py-14 lg:grid-cols-[1fr_minmax(0,28rem)] lg:gap-16 lg:py-20">
-        <div>
-          {crumbs?.length ? (
-            <nav aria-label="현재 위치" className="mb-6">
-              <ol className="flex list-none flex-wrap items-center gap-x-2 gap-y-1">
-                {crumbs.map((crumb, index) => (
-                  <li key={crumb.href} className="flex items-center gap-2">
-                    {index > 0 ? (
-                      <span aria-hidden className="text-border">
-                        /
-                      </span>
-                    ) : null}
-                    <Link
-                      href={crumb.href}
-                      className="type-label text-muted-foreground underline-offset-4 transition-colors hover:text-teal-deep hover:underline"
-                    >
-                      {crumb.label}
-                    </Link>
-                  </li>
-                ))}
-              </ol>
-            </nav>
-          ) : eyebrow ? (
-            <Eyebrow className="mb-6">{eyebrow}</Eyebrow>
+    <>
+      <div className={cn("grid bg-navy lg:min-h-[34rem] lg:grid-cols-[minmax(0,1fr)_minmax(0,1.25fr)]", className)}>
+        <div className="flex flex-col justify-center gap-6 px-5 py-14 md:px-8 lg:py-16 lg:pr-14 lg:pl-[max(2rem,calc((100vw-78rem)/2+2rem))]">
+          <nav aria-label="현재 위치">
+            <ol className="flex list-none flex-wrap items-center gap-x-2 gap-y-1 text-[0.8125rem] text-on-navy-muted">
+              {[{ label: "홈", href: "/" }, ...(crumbs ?? [])].map((crumb, index) => (
+                <li key={crumb.href + index} className="flex items-center gap-2">
+                  {index > 0 ? <span aria-hidden>›</span> : null}
+                  <Link
+                    href={crumb.href}
+                    className="underline-offset-4 transition-colors hover:text-white hover:underline"
+                  >
+                    {crumb.label}
+                  </Link>
+                </li>
+              ))}
+            </ol>
+          </nav>
+
+          {label ? (
+            <p className="flex items-center gap-3.5">
+              <span aria-hidden className="h-px w-10 bg-gold" />
+              <span className="text-[0.8125rem] font-semibold tracking-[0.22em] text-gold">
+                {label}
+              </span>
+            </p>
           ) : null}
 
-          <h1 className="type-display measure text-ink">
+          <h1 className="font-serif text-[clamp(2rem,1.4rem+2vw,3.25rem)] font-bold leading-[1.28] tracking-[-0.03em] text-balance text-white">
             {toSentences(title).map((sentence) => (
               <span key={sentence} className="block">
                 {sentence}
@@ -82,19 +88,26 @@ export function PageHero({
             ))}
           </h1>
 
-          {lede ? <p className="type-lede measure mt-7">{lede}</p> : null}
+          {lede ? (
+            <p className="max-w-[32rem] text-[clamp(1rem,0.95rem+0.25vw,1.09375rem)] leading-[1.8] text-pretty text-on-navy">
+              {lede}
+            </p>
+          ) : null}
         </div>
 
-        <Reveal className="w-full max-w-[36rem] lg:max-w-none">
-          <RectImage
-            image={image}
-            ratio="window"
+        <div className="relative aspect-[4/3] bg-[#3a4b5e] lg:aspect-auto">
+          <Image
+            src={image.src}
+            alt={image.alt}
+            fill
             priority
-            className="aspect-[1/0.72] lg:aspect-[1/1.15]"
-            sizes="(min-width: 1024px) 28rem, 92vw"
+            sizes="(min-width: 1024px) 56vw, 100vw"
+            className="object-cover"
           />
-        </Reveal>
+        </div>
       </div>
-    </div>
+
+      <SectionTabs />
+    </>
   );
 }

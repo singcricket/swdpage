@@ -21,6 +21,7 @@ import {
 } from "@/components/site/blocks/primitives";
 import { FollowChannels } from "@/components/site/blocks/channel-links";
 import { CtaBand } from "@/components/site/blocks/cta-band";
+import { versioned } from "@/lib/media.server";
 
 export const metadata: Metadata = {
   title: "진료시간 · 오시는 길",
@@ -31,6 +32,8 @@ export const metadata: Metadata = {
 const kakao = channels.find((channel) => channel.key === "kakao");
 
 export default function VisitPage() {
+  // 약도 파일을 같은 이름으로 바꿔 넣어도 새 그림이 나오도록 버전을 붙인다
+  const routeMap = versioned(brand.routeMap);
   return (
     <article>
       <PageHero
@@ -177,10 +180,10 @@ export default function VisitPage() {
                   약도
                 </figcaption>
                 <Image
-                  src={brand.routeMap.src}
-                  alt={brand.routeMap.alt}
-                  width={1000}
-                  height={702}
+                  src={routeMap.src}
+                  alt={routeMap.alt}
+                  width={routeMap.width ?? 1000}
+                  height={routeMap.height ?? 702}
                   sizes="(min-width: 1024px) 44rem, 92vw"
                   className="mt-4 h-auto w-full rounded-md border border-border bg-card"
                 />

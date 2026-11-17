@@ -40,7 +40,7 @@ export default function EquipmentPage() {
 
         <div className="flex min-w-0 flex-col gap-20">
           {equipmentGroups.map((group) => (
-            <section key={group.id} id={group.id} className="scroll-mt-28">
+            <section key={group.id} id={group.id} className="scroll-mt-36">
               <SectionHeader title={group.title} lede={group.summary} />
 
               <ul className="mt-12 flex list-none flex-col">

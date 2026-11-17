@@ -10,7 +10,7 @@ import { usePathname } from "next/navigation";
 import * as React from "react";
 
 import { brand } from "@/lib/images";
-import { channels, contact, hours, nav, type NavGroup } from "@/lib/site";
+import { channels, contact, directions, hours, nav, site, type NavGroup } from "@/lib/site";
 import { cn } from "@/lib/utils";
 
 const kakao = channels.find((channel) => channel.key === "kakao");
@@ -45,26 +45,32 @@ export function SiteHeader() {
   const pathname = usePathname();
 
   return (
-    <header className="sticky top-0 z-50 border-b border-border/70 bg-paper/92 backdrop-blur-md">
-      {/* 유틸리티 스트립 — 병원에서 가장 자주 찾는 두 정보 */}
-      <div className="hidden border-b border-border/60 bg-mist/60 lg:block">
-        <div className="shell flex h-9 items-center justify-between">
-          <p className="type-label text-teal-deep">
-            {hours.summary} · {hours.weekday}
-            <span className="mx-2 text-border">|</span>
-            접수 마감 {hours.lastReception}
+    <header className="sticky top-0 z-50 border-b border-border bg-paper/95 backdrop-blur-md">
+      {/* 상단 정보바 — 병원에서 가장 자주 찾는 정보 */}
+      <div className="hidden bg-ink text-[0.8125rem] text-[#d9dee5] lg:block">
+        <div className="shell flex h-9 items-center justify-between gap-6">
+          <p className="flex gap-5">
+            <span>
+              {hours.summary} · {hours.weekday}
+            </span>
+            <span className="text-on-navy-muted">
+              점심 {hours.lunch.replace("오후 ", "").replace("오후 ", "")} · 접수 마감 {hours.lastReception}
+            </span>
           </p>
 
-          <a
-            href={contact.telHref}
-            className="type-label text-ink transition-colors hover:text-teal-deep"
-          >
-            {contact.tel}
-          </a>
+          <p className="flex items-center gap-5">
+            <span className="hidden text-on-navy-muted xl:inline">{directions.transit}</span>
+            <a
+              href={contact.telHref}
+              className="font-semibold text-white transition-colors hover:text-gold"
+            >
+              {contact.tel}
+            </a>
+          </p>
         </div>
       </div>
 
-      <div className="shell flex h-16 items-center justify-between gap-6 lg:h-20">
+      <div className="shell flex h-16 items-center justify-between gap-6 lg:h-[5.25rem]">
         <Link
           href="/"
           className="flex shrink-0 items-center gap-2.5 rounded-sm focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-ring"
@@ -75,14 +81,16 @@ export function SiteHeader() {
             width={120}
             height={44}
             priority
-            className="h-6 w-auto lg:h-7"
+            className="h-6 w-auto lg:h-8"
           />
           <span className="sr-only">신원당동물의료센터 홈으로</span>
-          <span
-            aria-hidden
-            className="font-serif text-[0.95rem] font-bold tracking-tight text-ink lg:text-base"
-          >
-            신원당동물의료센터
+          <span aria-hidden className="flex flex-col">
+            <span className="text-[0.95rem] font-bold leading-tight tracking-[-0.02em] text-ink lg:text-[1.1875rem]">
+              {site.name}
+            </span>
+            <span className="hidden text-[0.625rem] leading-tight tracking-[0.16em] text-[#5b6878] lg:block">
+              {site.nameEn}
+            </span>
           </span>
         </Link>
 
@@ -92,9 +100,8 @@ export function SiteHeader() {
         <div className="flex items-center gap-2">
           <a
             href={contact.telHref}
-            className="hidden items-center gap-2 rounded-sm bg-primary px-4 py-2.5 text-sm font-medium text-primary-foreground transition-colors hover:bg-ink focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring lg:inline-flex"
+            className="hidden items-center rounded-sm bg-primary px-[1.375rem] py-[0.8125rem] text-[0.9375rem] font-semibold text-primary-foreground transition-colors hover:bg-ink focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring lg:inline-flex"
           >
-            <Phone className="size-4" aria-hidden />
             진료 예약 · 문의
           </a>
 
@@ -154,9 +161,6 @@ function DesktopNav({ pathname }: { pathname: string }) {
                 className={cn(triggerClass, active && triggerActiveClass)}
               >
                 {group.label}
-                <NavigationMenu.Icon className="transition-transform duration-200 data-popup-open:rotate-180">
-                  <ChevronDown className="size-3.5" aria-hidden />
-                </NavigationMenu.Icon>
               </NavigationMenu.Trigger>
 
               <NavigationMenu.Content className={contentClass}>
@@ -257,11 +261,11 @@ function DesktopNav({ pathname }: { pathname: string }) {
 }
 
 const triggerClass =
-  "relative flex h-10 cursor-default items-center gap-1 rounded-sm px-3 text-sm font-medium text-ink no-underline transition-colors select-none hover:bg-mist data-popup-open:bg-mist focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-ring";
+  "relative flex h-10 cursor-default items-center rounded-sm px-[1.0625rem] text-[0.96875rem] font-medium text-ink no-underline transition-colors select-none hover:text-teal-deep data-popup-open:text-teal-deep focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-ring";
 
-/** 활성 메뉴는 아래에 teal 밑줄. 색만으로 구분하지 않는다. */
+/** 활성 메뉴는 아래에 밑줄. 색만으로 구분하지 않는다. */
 const triggerActiveClass =
-  "text-teal-deep after:absolute after:inset-x-3 after:-bottom-px after:h-0.5 after:rounded-full after:bg-teal after:content-['']";
+  "after:absolute after:inset-x-[1.0625rem] after:-bottom-1 after:h-0.5 after:rounded-full after:bg-teal-deep after:content-['']";
 
 const contentClass =
   "h-full w-full transition-[opacity,translate] duration-[var(--duration)] ease-[var(--easing)] data-starting-style:opacity-0 data-ending-style:opacity-0 data-starting-style:data-[activation-direction=left]:-translate-x-1/4 data-starting-style:data-[activation-direction=right]:translate-x-1/4 data-ending-style:data-[activation-direction=left]:translate-x-1/4 data-ending-style:data-[activation-direction=right]:-translate-x-1/4";

@@ -16,6 +16,8 @@ const nextConfig: NextConfig = {
       // (lib/media.server.ts)
       { pathname: "/images/photos/**" },
       { pathname: "/images/illustrations/**" },
+      // 약도 등 같은 이름으로 바꿔 넣는 브랜드 이미지 (versioned())
+      { pathname: "/images/brand/**" },
     ],
   },
 };

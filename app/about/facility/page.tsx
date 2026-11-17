@@ -40,7 +40,7 @@ export default function FacilityPage() {
 
         <div className="flex min-w-0 flex-col gap-20">
           {spaceGroups.map((group) => (
-            <section key={group.id} id={group.id} className="scroll-mt-28">
+            <section key={group.id} id={group.id} className="scroll-mt-36">
               <SectionHeader title={group.title} lede={group.summary} />
 
               <ul className="mt-12 flex list-none flex-col gap-14">

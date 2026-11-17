@@ -3,7 +3,7 @@
 import * as React from "react";
 import { cn } from "@/lib/utils";
 
-/** 고정 헤더에 제목이 가리지 않도록 띄우는 여백. `scroll-mt-28` 과 같은 값. */
+/** 고정 헤더에 제목이 가리지 않도록 띄우는 여백. `scroll-mt-36` 과 같은 값. */
 const HEADER_OFFSET = 112;
 
 function scrollToSection(id: string, behavior: ScrollBehavior = "smooth") {
@@ -78,7 +78,7 @@ export function IndexRail({
 
   return (
     <nav aria-label="이 페이지의 목차" className={cn("hidden xl:block", className)}>
-      <div className="sticky top-32">
+      <div className="sticky top-40">
         <p className="type-label text-muted-foreground">이 페이지의 구성</p>
         <ol className="mt-5 list-none space-y-px border-l border-border">
           {items.map((item) => {

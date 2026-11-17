@@ -246,3 +246,29 @@ export const footerNav = nav.map((group) => ({
   label: group.label,
   links: group.children ?? [{ label: group.label, href: group.href }],
 }));
+
+/**
+ * 페이지 맨 위 금색 눈썹 라벨(영문). 2026-11 개편안.
+ * 없는 주소는 페이지가 넘긴 한글 눈썹을 쓴다.
+ */
+export const heroEyebrowEn: Record<string, string> = {
+  "/about": "ABOUT US",
+  "/about/visit": "HOURS & DIRECTIONS",
+  "/about/team": "OUR VETERINARIANS",
+  "/about/facility": "FACILITIES",
+  "/about/equipment": "MEDICAL EQUIPMENT",
+  "/clinics/chronic": "CHRONIC CARE CLINIC",
+  "/clinics/chronic/cardio": "CARDIOLOGY",
+  "/clinics/chronic/renal": "NEPHROLOGY · UROLOGY",
+  "/clinics/chronic/gi": "GASTROENTEROLOGY",
+  "/clinics/chronic/derm": "DERMATOLOGY",
+  "/clinics/chronic/senior": "SENIOR CARE",
+  "/clinics/cat": "ISFM CAT FRIENDLY · GOLD",
+  "/clinics/surgery": "SURGERY CENTER",
+  "/clinics/surgery/orthopedic": "ORTHOPEDIC SURGERY",
+  "/clinics/surgery/general": "GENERAL SURGERY",
+  "/clinics/oncology": "ONCOLOGY CLINIC",
+  "/clinics/dental": "DENTAL CLINIC",
+  "/clinics/checkup": "HEALTH CHECKUP CENTER",
+  "/clinics/care": "HOSPITALIZATION & CARE",
+};

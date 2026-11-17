@@ -68,6 +68,19 @@ export function heroPhotoFor(page: string): Img | undefined {
   return mediaForPage(page).hero;
 }
 
+/**
+ * 이미 주소가 정해진 사이트 이미지(약도처럼 같은 이름으로 바꿔 넣는 파일)에
+ * 파일 버전과 실제 크기를 붙인다. 파일을 바꿔 넣으면 주소가 바뀌어 새 이미지가 나온다.
+ * next.config.ts 의 images.localPatterns 에 해당 폴더가 쿼리 허용으로 있어야 한다.
+ */
+export function versioned(image: Img): Img {
+  const file = path.join(PUBLIC, image.src.split("?")[0]);
+  if (!fs.existsSync(file)) return image;
+  const stat = fs.statSync(file);
+  const version = `${stat.size.toString(36)}${Math.round(stat.mtimeMs).toString(36)}`;
+  return { ...image, ...(readSize(file) ?? {}), src: `${image.src.split("?")[0]}?v=${version}` };
+}
+
 /** public/<folder>/<base>.<ext> 를 찾아 크기까지 읽은 Img 로 돌려준다. */
 function loadImage(folder: string, base: string, alt: string): Img | null {
   for (const ext of EXTS) {

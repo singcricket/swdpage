@@ -7,12 +7,15 @@
 /* ===========================================================================
    신원당동물의료센터 — 디자인 토큰
 
-   팔레트는 브랜드 자산에서 직접 뽑았다.
-     ink    #16283C  로고 워드마크의 네이비
-     teal   #5CAABE  지정 primary
-     coral  #B4442F  로고 심볼 안 붉은 십자
-     mist   #EAF2F4  코브 조명이 닿은 벽면 톤
-     paper  #FBFAF7  미세하게 따뜻한 배경
+   2026-11 개편안(남색 · 금색). 클라이언트 시안 Home.dc.html 의 색을 그대로 옮겼다.
+     ink        #172338  본문 글자, 가장 짙은 띠(상단 정보바 · 예약 안내)
+     navy       #1B2B40  히어로 · 시설 섹션 바탕
+     gold       #C8A57C  남색 위 포인트(눈썹 라벨 · 선)
+     teal-deep  #2E6B80  링크 · 버튼
+     teal       #5CAABE  그래픽 전용(헤어라인 · 작은 표식)
+     coral      #B4442F  로고 심볼 안 붉은 십자
+     mist       #EFE9DF  베이지 섹션 바탕
+     paper      #F8F5EE  기본 바탕
 
    teal은 흰 글씨 대비가 2.6:1 이라 텍스트·버튼에 쓸 수 없다.
    그래픽(아치 윤곽, 헤어라인, 큰 장식 활자) 전용이고,
@@ -24,7 +27,7 @@
   --color-foreground: var(--foreground);
 
   --font-sans: var(--font-plex-kr);
-  --font-serif: var(--font-maruburi);
+  --font-serif: var(--font-serif-kr);
   --font-mono: var(--font-plex-mono);
 
   /* 브랜드 */
@@ -34,6 +37,12 @@
   --color-mist: var(--mist);
   --color-coral: var(--coral);
   --color-paper: var(--paper);
+  --color-navy: var(--navy);
+  --color-gold: var(--gold);
+  /* 남색 바탕 위 글자 */
+  --color-on-navy: var(--on-navy);
+  --color-on-navy-muted: var(--on-navy-muted);
+  --color-navy-line: var(--navy-line);
 
   /* shadcn 시맨틱 */
   --color-card: var(--card);
@@ -64,14 +73,17 @@
 
 :root {
   /* 브랜드 원색 */
-  --ink: oklch(0.27 0.045 256); /* #16283C */
+  --ink: #172338;
   --teal: oklch(0.696 0.082 217); /* #5CAABE */
-  --teal-deep: oklch(0.503 0.072 223); /* #2E6E82 */
-  /* 바탕 두 가지는 웜톤. 사진이 회백색이라 바탕까지 푸르면 화면 전체가 차갑게
-     가라앉는다. 청록(teal)은 그대로 두어 브랜드 색이 웜톤 위에서 또렷해진다. */
-  --mist: oklch(0.925 0.02 77); /* #EEE5D8 — 베이지 회색 */
+  --teal-deep: #2e6b80;
+  --mist: #efe9df;
   --coral: oklch(0.537 0.15 33); /* #B4442F */
-  --paper: oklch(0.974 0.01 82); /* #FAF6EF — 따뜻한 미색 */
+  --paper: #f8f5ee;
+  --navy: #1b2b40;
+  --gold: #c8a57c;
+  --on-navy: #c9d1dc;
+  --on-navy-muted: #9faab8;
+  --navy-line: #5d6e84;
 
   /* 시맨틱 */
   --background: var(--paper);
@@ -85,12 +97,12 @@
   --secondary: var(--mist);
   --secondary-foreground: oklch(0.38 0.055 230);
   --muted: oklch(0.955 0.01 80);
-  --muted-foreground: oklch(0.48 0.027 236); /* paper 대비 약 6:1, mist 위에서도 4.5:1 이상 */
+  --muted-foreground: #4a5566; /* paper 대비 약 7:1 */
   --accent: var(--mist);
   --accent-foreground: oklch(0.38 0.055 230);
   --destructive: var(--coral);
-  --border: oklch(0.914 0.009 225); /* #DDE4E7 */
-  --input: oklch(0.914 0.009 225);
+  --border: #e6dfd2;
+  --input: #e6dfd2;
   --ring: var(--teal-deep);
 
   --radius: 0.25rem;
@@ -177,7 +189,7 @@
   /* 히어로 헤드라인 */
   .type-display {
     font-family: var(--font-serif);
-    font-weight: 600;
+    font-weight: 700;
     font-size: clamp(2rem, 1.35rem + 2.9vw, 3.75rem);
     line-height: 1.4;
     letter-spacing: -0.025em;
@@ -187,7 +199,7 @@
   /* 섹션 제목 */
   .type-headline {
     font-family: var(--font-serif);
-    font-weight: 600;
+    font-weight: 700;
     font-size: clamp(1.5rem, 1.22rem + 1.25vw, 2.25rem);
     line-height: 1.5;
     letter-spacing: -0.02em;

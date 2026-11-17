@@ -31,7 +31,7 @@ export function CtaBand({
           <p className="mt-4 max-w-xl text-[0.9375rem] leading-8 text-paper/70">
             {body}
           </p>
-          <p className="type-label mt-6 text-teal">
+          <p className="type-label mt-6 text-gold">
             {hours.summary} · {hours.weekday} · 접수 마감 {hours.lastReception}
           </p>
 
@@ -44,7 +44,7 @@ export function CtaBand({
         <div className="flex shrink-0 flex-col gap-3 lg:w-[19rem]">
           <a
             href={contact.telHref}
-            className="inline-flex items-center justify-center gap-2.5 rounded-sm bg-teal px-6 py-4 text-[0.9375rem] font-medium text-ink transition-colors hover:bg-paper focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-teal"
+            className="inline-flex items-center justify-center gap-2.5 rounded-sm bg-paper px-6 py-4 text-[1.0625rem] font-bold text-ink transition-colors hover:bg-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-teal"
           >
             <Phone className="size-4" aria-hidden />
             {contact.tel}

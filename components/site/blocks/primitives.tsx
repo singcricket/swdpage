@@ -18,7 +18,7 @@ export function Section({
     <section
       className={cn(
         tight ? "section-tight" : "section",
-        tone === "mist" && "bg-mist/45",
+        tone === "mist" && "bg-mist",
         tone === "ink" && "bg-ink text-paper",
         className,
       )}
@@ -61,7 +61,7 @@ export function SectionHeader({
       {eyebrow ? <Eyebrow>{eyebrow}</Eyebrow> : null}
       <h2
         id={id}
-        className={cn("type-headline text-ink", id && "scroll-mt-32")}
+        className={cn("type-headline text-ink", id && "scroll-mt-36")}
       >
         {title}
       </h2>
