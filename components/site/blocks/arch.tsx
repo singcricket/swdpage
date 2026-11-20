@@ -142,6 +142,8 @@ type RectImageProps = {
   outlined?: boolean;
   /** 주면 눌러서 크게 볼 수 있다 */
   zoom?: ZoomProp;
+  /** 밝은 바탕 그림(삽화)을 틀 배경색에 녹인다 */
+  blend?: boolean;
   /**
    * object-position 값 (예: "center top", "30% 50%").
    * null/undefined면 기본값(center)을 그대로 쓴다 — 얼굴이 중앙에서
@@ -168,6 +170,7 @@ export function RectImage({
   outlined = false,
   objectPosition = null,
   zoom,
+  blend = false,
 }: RectImageProps) {
   const auto = ratio === "auto" && image.width && image.height;
 
@@ -187,7 +190,11 @@ export function RectImage({
         priority={priority}
         sizes={auto ? sizes : coverSizes(sizes, image, frameAspect[ratio === "auto" ? "window" : ratio])}
         style={objectPosition ? { objectPosition } : undefined}
-        className="object-cover"
+        className={cn(
+          "object-cover",
+          // 밝은 바탕 그림을 틀의 배경색에 녹인다. 바탕이 순백이 아니어도 지워지도록 살짝 밝힌다.
+          blend && "mix-blend-multiply brightness-[1.04]",
+        )}
       />
       {outlined ? (
         <span

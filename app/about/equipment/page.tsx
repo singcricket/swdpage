@@ -10,6 +10,7 @@ import { IndexRail } from "@/components/site/blocks/index-rail";
 import { SectionHeader } from "@/components/site/blocks/primitives";
 import { CtaBand } from "@/components/site/blocks/cta-band";
 import { ZoomOverlay } from "@/components/site/blocks/zoom";
+import { versioned } from "@/lib/media.server";
 
 export const metadata: Metadata = {
   title: "의료장비",
@@ -44,7 +45,10 @@ export default function EquipmentPage() {
               <SectionHeader title={group.title} lede={group.summary} />
 
               <ul className="mt-12 flex list-none flex-col">
-                {group.items.map((item, index) => (
+                {group.items.map((item, index) => {
+                  // 실제 가로·세로를 읽어 휴대폰에서 틀을 사진 크기에 맞춘다
+                  const image = versioned(item.image);
+                  return (
                   <Reveal
                     as="li"
                     key={item.name + item.model}
@@ -53,17 +57,17 @@ export default function EquipmentPage() {
                   >
                     {/* 제품 사진은 흰 배경 위 컷이라 곱하기로 섞어 흰색을 사이트 배경색에 녹인다.
                         여기서는 사진을 있는 그대로 두고 여백으로 정리한다. */}
-                    <div className="relative flex items-center justify-center rounded-md bg-background p-6 ring-1 ring-border">
+                    <div className="relative mx-auto flex w-fit max-w-full items-center justify-center rounded-md bg-background p-4 md:mx-0 md:w-auto md:p-6">
                       <Image
-                        src={item.image.src}
-                        alt={item.image.alt}
-                        width={420}
-                        height={420}
+                        src={image.src}
+                        alt={image.alt}
+                        width={image.width ?? 420}
+                        height={image.height ?? 420}
                         sizes="(min-width: 768px) 14rem, 60vw"
-                        className="h-auto max-h-44 w-auto object-contain mix-blend-multiply"
+                        className="h-auto max-h-48 w-auto max-w-full object-contain mix-blend-multiply md:max-h-44"
                       />
                       <ZoomOverlay
-                        gallery={group.items.map((entry) => entry.image)}
+                        gallery={group.items.map((entry) => versioned(entry.image))}
                         index={index}
                       />
                     </div>
@@ -80,7 +84,8 @@ export default function EquipmentPage() {
                       </p>
                     </div>
                   </Reveal>
-                ))}
+                  );
+                })}
               </ul>
             </section>
           ))}

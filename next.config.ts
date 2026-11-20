@@ -20,6 +20,8 @@ const nextConfig: NextConfig = {
       { pathname: "/images/brand/**" },
       // 건강검진 · 치과 리포트 예시 (versioned())
       { pathname: "/images/report/**" },
+      // 장비 사진 (versioned())
+      { pathname: "/images/equipment/**" },
     ],
   },
 };

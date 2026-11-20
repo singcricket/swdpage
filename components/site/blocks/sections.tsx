@@ -28,14 +28,15 @@ function ArchTick({ tone = "teal" }: { tone?: "teal" | "coral" }) {
   );
 }
 
-/** AI 삽화 한 장. 흰 바탕 카드에 원본 비율 그대로, 누르면 크게 본다. */
+/** AI 삽화 한 장. 바탕을 사이트 배경색에 녹여 원본 비율 그대로, 누르면 크게 본다. */
 function Figure({ image, className }: { image: Img; className?: string }) {
   return (
     <RectImage
       image={image}
       ratio="auto"
       caption={image.alt}
-      className={cn("bg-card ring-1 ring-border", className)}
+      className={cn("bg-background", className)}
+      blend
       sizes="(min-width: 1024px) 48rem, 90vw"
       zoom={{ gallery: [image], index: 0 }}
     />
