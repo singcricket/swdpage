@@ -51,16 +51,16 @@ export default function EquipmentPage() {
                     delay={stagger(index)}
                     className="grid gap-8 border-t border-border py-10 md:grid-cols-[minmax(0,14rem)_1fr] md:gap-12"
                   >
-                    {/* 제품 사진은 흰 배경 위 컷이라 아치로 자르면 잘린 티가 난다.
+                    {/* 제품 사진은 흰 배경 위 컷이라 곱하기로 섞어 흰색을 사이트 배경색에 녹인다.
                         여기서는 사진을 있는 그대로 두고 여백으로 정리한다. */}
-                    <div className="relative flex items-center justify-center rounded-md bg-card p-6 ring-1 ring-border">
+                    <div className="relative flex items-center justify-center rounded-md bg-background p-6 ring-1 ring-border">
                       <Image
                         src={item.image.src}
                         alt={item.image.alt}
                         width={420}
                         height={420}
                         sizes="(min-width: 768px) 14rem, 60vw"
-                        className="h-auto max-h-44 w-auto object-contain"
+                        className="h-auto max-h-44 w-auto object-contain mix-blend-multiply"
                       />
                       <ZoomOverlay
                         gallery={group.items.map((entry) => entry.image)}

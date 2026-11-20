@@ -17,14 +17,14 @@ export function EquipmentGrid({ items }: { items: Img[] }) {
       {items.map((image, index) => (
         <Reveal as="li" key={image.src} delay={stagger(index)}>
           <figure className="flex h-full flex-col gap-3">
-            <div className="relative flex aspect-[4/3] items-center justify-center rounded-md bg-card p-6 ring-1 ring-border">
+            <div className="relative flex aspect-[4/3] items-center justify-center rounded-md bg-background p-6 ring-1 ring-border">
               <Image
                 src={image.src}
                 alt={image.alt}
                 width={420}
                 height={420}
                 sizes="(min-width: 1024px) 16rem, (min-width: 640px) 40vw, 80vw"
-                className="h-full max-h-40 w-auto object-contain"
+                className="h-full max-h-40 w-auto object-contain mix-blend-multiply"
               />
               <ZoomOverlay gallery={items} index={index} />
             </div>

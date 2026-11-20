@@ -133,7 +133,7 @@ export const equipment = {
     alt: "LigaSure 전기수술 장비",
   },
   electrosurgery: {
-    src: "/images/equipment/electrosurgery-zerone-zeus.png",
+    src: "/images/equipment/electrosurgery-zerone-zeus-cut.png",
     alt: "전기수술기기 Zerone Zeus",
   },
   dentalXray: {
@@ -149,7 +149,7 @@ export const equipment = {
     alt: "치과 광중합기 DTE",
   },
   labCatalystOne: {
-    src: "/images/equipment/lab-idexx-catalyst-one.jpg",
+    src: "/images/equipment/lab-idexx-catalyst-one-cut.png",
     alt: "혈청화학 분석 장비 IDEXX Catalyst One",
   },
   labFujiNx600: {
@@ -157,7 +157,7 @@ export const equipment = {
     alt: "생화학 분석기 Fuji NX600i",
   },
   labProcyteOne: {
-    src: "/images/equipment/lab-procyte-one.jpg",
+    src: "/images/equipment/lab-procyte-one-cut.png",
     alt: "혈구혈액 검사기 Procyte ONE",
   },
   labVetStat: {
