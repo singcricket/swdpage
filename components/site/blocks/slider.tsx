@@ -64,7 +64,7 @@ export function ImageSlider({
       <div
         ref={trackRef}
         onScroll={onScroll}
-        className="flex snap-x snap-mandatory gap-4 overflow-x-auto overscroll-x-contain scroll-smooth pb-1 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+        className="flex items-center snap-x snap-mandatory gap-4 overflow-x-auto overscroll-x-contain scroll-smooth pb-1 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
       >
         {images.map((image, index) => (
           <div

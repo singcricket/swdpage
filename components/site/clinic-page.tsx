@@ -4,8 +4,9 @@ import { type ClinicPage, tableOfContents } from "@/lib/content/types";
 import { PageHero } from "./blocks/page-hero";
 import { IndexRail } from "./blocks/index-rail";
 import { SectionBlock } from "./blocks/sections";
+import { Spotlight } from "./blocks/spotlight";
 import { CtaBand } from "./blocks/cta-band";
-import { mediaForPage } from "@/lib/media.server";
+import { mediaForPage, versioned } from "@/lib/media.server";
 
 /** 페이지 데이터 하나로 metadata 를 만든다. 각 route 에서 재사용. */
 export function clinicMetadata(page: ClinicPage): Metadata {
@@ -34,7 +35,10 @@ export function ClinicPageLayout({
   page: ClinicPage;
   crumbs?: { label: string; href: string }[];
 }) {
-  const toc = tableOfContents(page.sections);
+  const toc = [
+    ...(page.spotlight ? [{ id: page.spotlight.id, title: page.spotlight.title }] : []),
+    ...tableOfContents(page.sections),
+  ];
   // 폴더에 들어 있는 컨셉 사진 · 삽화만 정해 둔 자리에 놓인다
   // (lib/photos.ts, lib/illustrations.ts)
   const { hero, figures } = mediaForPage(page.href);
@@ -51,6 +55,16 @@ export function ClinicPageLayout({
 
       {/* h1 은 히어로의 카피가 맡는다. 페이지의 공식 명칭은 스크린리더에 남긴다. */}
       <h2 className="sr-only">{page.title}</h2>
+
+      {page.spotlight ? (
+        <Spotlight
+          section={{
+            ...page.spotlight,
+            // 같은 이름으로 바꿔 넣어도 새 이미지가 나오도록 파일 버전을 붙인다
+            slides: page.spotlight.slides?.map(versioned),
+          }}
+        />
+      ) : null}
 
       <div className="shell grid gap-12 py-16 xl:grid-cols-[minmax(0,14rem)_minmax(0,1fr)] xl:gap-20 xl:py-24">
         <IndexRail items={toc} />

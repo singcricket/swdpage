@@ -1,5 +1,5 @@
 import type { ClinicPage } from "@/lib/content/types";
-import { equipment, facility } from "@/lib/images";
+import { dentalReport, equipment, facility } from "@/lib/images";
 
 /** 원고 「6. 치과 병원」 */
 export const dentalPage: ClinicPage = {
@@ -11,6 +11,24 @@ export const dentalPage: ClinicPage = {
   description:
     "스케일링, 치주질환 치료, 발치, 구강 종양을 진료합니다. 치과 전용 디지털 방사선으로 치근과 치조골까지 확인하고, 마취는 다섯 항목을 실시간 모니터링합니다.",
   hero: facility.dentalRoom[0],
+  spotlight: {
+    kind: "list",
+    id: "report",
+    eyebrow: "치료 후 받아보시는 결과지",
+    title: "신원당 치과 리포트",
+    slides: dentalReport,
+    intro:
+      "마취 중에 입 안에서 어떤 일이 있었는지 보호자분은 직접 보실 수 없습니다. 그래서 치아 하나하나의 상태와 처치 내용을 사진과 함께 리포트로 정리해 드립니다.",
+    items: [
+      "입안 전반 상태와 치주 질환 병기",
+      "부위별 치과 방사선 사진",
+      "마취 기록과 진행된 처치 항목",
+      "치료 전 · 후 비교 사진",
+      "치아 차트로 보는 치아별 소견",
+      "발치 기록과 모니터링이 필요한 치아",
+    ],
+    note: "치료를 마친 뒤 카카오톡 또는 이메일로 보내드립니다. 다음 치과 검진 때 이전 리포트와 비교하며, 지켜보기로 한 치아의 변화를 함께 확인합니다.",
+  },
   sections: [
     {
       kind: "prose",

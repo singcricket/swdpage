@@ -414,6 +414,18 @@ export const hero = {
 /* ------------------------------------------------------------------ */
 
 /** 실제 발송되는 리포트를 캡처한 것. 순서대로 넘겨 본다. */
+/** 치과 검진 리포트 예시 (보호자용, 8쪽) */
+export const dentalReport: Img[] = [
+  { src: "/images/report/dental-1.png", alt: "치과 리포트 1쪽 예시 — 입안 전반 상태 — 교합, 치은염, 치주 질환 병기, 치석", width: 1434, height: 776 },
+  { src: "/images/report/dental-2.png", alt: "치과 리포트 2쪽 예시 — 방사선 검사 — 부위별 치과 방사선 사진", width: 1410, height: 860 },
+  { src: "/images/report/dental-3.png", alt: "치과 리포트 3쪽 예시 — 진행된 처치 — 마취 기록과 치료 전 · 후 사진", width: 1420, height: 1034 },
+  { src: "/images/report/dental-4.png", alt: "치과 리포트 4쪽 예시 — 치아 차트 — 소견이 있는 치아를 그림에 표시", width: 1420, height: 1058 },
+  { src: "/images/report/dental-5.png", alt: "치과 리포트 5쪽 예시 — 치아별 소견 — 치주 · 치은염 · 동요도 · 교모", width: 1424, height: 1004 },
+  { src: "/images/report/dental-6.png", alt: "치과 리포트 6쪽 예시 — 치아별 사진 — 치료 전 · 후와 방사선", width: 1420, height: 1078 },
+  { src: "/images/report/dental-7.png", alt: "치과 리포트 7쪽 예시 — 발치 기록 — 발치 전 사진과 발치한 치아", width: 1420, height: 1066 },
+  { src: "/images/report/dental-8.png", alt: "치과 리포트 8쪽 예시 — 모니터링이 필요한 치아 — 소견과 치료 전 · 후 사진", width: 1422, height: 1056 },
+];
+
 export const checkupReport: Img[] = [
   { src: "/images/report/report-1.png", alt: "건강검진 리포트 1쪽 예시 — 표지, 종합 건강검진 결과 보고서", width: 3784, height: 2004 },
   { src: "/images/report/report-2.png", alt: "건강검진 리포트 2쪽 예시 — 품종 · 나이 · 성별 기반 리스크 분석", width: 3794, height: 2124 },

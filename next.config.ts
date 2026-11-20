@@ -18,6 +18,8 @@ const nextConfig: NextConfig = {
       { pathname: "/images/illustrations/**" },
       // 약도 등 같은 이름으로 바꿔 넣는 브랜드 이미지 (versioned())
       { pathname: "/images/brand/**" },
+      // 건강검진 · 치과 리포트 예시 (versioned())
+      { pathname: "/images/report/**" },
     ],
   },
 };

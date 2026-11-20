@@ -159,6 +159,11 @@ export type ClinicPage = {
   /** 메타 description */
   description: string;
   hero: Img;
+  /**
+   * 히어로 바로 아래 넓은 띠로 먼저 보여 줄 대표 섹션 (예: 건강검진 리포트).
+   * 좌측 목차 앞에 따로 놓이며, 목차 맨 위에도 링크가 붙는다.
+   */
+  spotlight?: ListSection;
   sections: Section[];
 };
 
