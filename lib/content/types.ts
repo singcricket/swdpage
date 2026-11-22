@@ -22,6 +22,8 @@ type Base = {
   eyebrow?: string;
   /** 제목 바로 아래 가로로 넘겨 보는 이미지 묶음 (예: 건강검진 리포트 예시) */
   slides?: Img[];
+  /** true 면 페이지와 목차에서 숨긴다. 내용은 남겨 두어 지우기만 하면 다시 나온다. */
+  hidden?: boolean;
 };
 
 /** 문단 몇 개. 강조가 필요 없는 설명글. */
@@ -170,6 +172,6 @@ export type ClinicPage = {
 /** 인덱스 레일이 쓸 목차. 인용 섹션은 목차에 넣지 않는다. */
 export function tableOfContents(sections: Section[]) {
   return sections
-    .filter((section) => section.kind !== "quote")
+    .filter((section) => section.kind !== "quote" && !section.hidden)
     .map((section) => ({ id: section.id, title: section.title }));
 }

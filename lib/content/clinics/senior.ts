@@ -91,6 +91,8 @@ export const seniorPage: ClinicPage = {
     {
       kind: "equipment",
       id: "equipment",
+      // 만성질환 클리닉에서는 장비 소개가 반복돼 숨김. 다시 보이려면 이 줄을 지운다.
+      hidden: true,
       title: "검사 장비",
       intro: "정기검진 항목 대부분을 한 번의 내원으로 확인합니다.",
       items: [equipment.ultrasound, equipment.xray, equipment.labVcheck],

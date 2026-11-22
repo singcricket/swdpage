@@ -87,6 +87,8 @@ export const giPage: ClinicPage = {
     {
       kind: "equipment",
       id: "equipment",
+      // 만성질환 클리닉에서는 장비 소개가 반복돼 숨김. 다시 보이려면 이 줄을 지운다.
+      hidden: true,
       title: "검사 장비",
       intro: "내시경과 초음파로 소화기 상태를 확인합니다.",
       items: [equipment.endoscope, equipment.ultrasound, equipment.labVcheck, equipment.xray],

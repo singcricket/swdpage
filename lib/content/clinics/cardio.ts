@@ -72,6 +72,8 @@ export const cardioPage: ClinicPage = {
     {
       kind: "equipment",
       id: "equipment",
+      // 만성질환 클리닉에서는 장비 소개가 반복돼 숨김. 다시 보이려면 이 줄을 지운다.
+      hidden: true,
       title: "검사 장비",
       intro: "심초음파와 심장 관련 혈액검사를 원내 장비로 진행합니다.",
       items: [equipment.ultrasound, equipment.xray, equipment.monitor, equipment.labVcheck],

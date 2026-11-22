@@ -95,6 +95,8 @@ export const dermPage: ClinicPage = {
     {
       kind: "equipment",
       id: "equipment",
+      // 만성질환 클리닉에서는 장비 소개가 반복돼 숨김. 다시 보이려면 이 줄을 지운다.
+      hidden: true,
       title: "검사 장비",
       intro: "외이도는 검이경으로 귀 안쪽까지 직접 확인합니다.",
       items: [equipment.otoscope],

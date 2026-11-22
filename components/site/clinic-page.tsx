@@ -70,7 +70,7 @@ export function ClinicPageLayout({
         <IndexRail items={toc} />
 
         <div className="flex min-w-0 flex-col gap-16 md:gap-20">
-          {page.sections.map((section) => (
+          {page.sections.filter((section) => !section.hidden).map((section) => (
             <SectionBlock
               key={section.id}
               section={section}
