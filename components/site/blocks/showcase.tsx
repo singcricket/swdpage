@@ -15,18 +15,18 @@ import { Reveal } from "./reveal";
 /** 왼쪽 글 칸을 다른 섹션의 shell 시작선과 맞추는 안쪽 여백 (화면 끝까지 찬 좌우 분할 섹션용) */
 export const alignLeft = "lg:pl-[max(2rem,calc((100vw-78rem)/2+2rem))]";
 
-/** 베이지 바탕에 꽉 찬 대표원장 사진과 남색 이름표 */
+/** 사이트 배경에 녹아드는 대표원장 사진과 남색 이름표 */
 export function DirectorFigure({ className }: { className?: string }) {
   const director = vets.find((vet) => vet.role === "대표원장") ?? vets[0];
   return (
     <div className={`relative ${className ?? ""}`}>
-      <div className="relative mx-auto aspect-[4/5] max-w-[32rem] overflow-hidden rounded-md bg-[#ede6da]">
+      <div className="relative mx-auto aspect-[4/5] max-w-[32rem] overflow-hidden rounded-md bg-background">
         <Image
           src={director.portrait.src}
           alt={director.portrait.alt}
           fill
           sizes="(min-width: 1024px) 32rem, 90vw"
-          className="object-cover object-[50%_15%] mix-blend-multiply"
+          className="object-cover object-[50%_15%] mix-blend-multiply brightness-[1.06]"
         />
       </div>
       <div className="absolute bottom-6 left-6 rounded-sm bg-navy px-5 py-3.5 text-white">
@@ -125,13 +125,13 @@ export function TeamShowcase({
       <ul className="grid list-none grid-cols-2 gap-x-4 gap-y-10 sm:gap-6 lg:grid-cols-4">
         {vets.map((vet, index) => (
           <Reveal as="li" key={vet.slug} delay={stagger(index)} className="flex flex-col gap-4">
-            <div className="relative aspect-[3/4] overflow-hidden rounded-md bg-[#ede6da]">
+            <div className="relative aspect-[3/4] overflow-hidden rounded-md bg-background">
               <Image
                 src={vet.portrait.src}
                 alt={vet.portrait.alt}
                 fill
                 sizes="(min-width: 1024px) 18rem, 45vw"
-                className="object-cover object-[50%_10%] mix-blend-multiply"
+                className="object-cover object-[50%_10%] mix-blend-multiply brightness-[1.06]"
               />
             </div>
             <div className="flex flex-col gap-1.5">

@@ -45,6 +45,8 @@ export default function TeamPage() {
                   <RectImage
                     image={vet.portrait}
                     ratio="auto"
+                    className="bg-background"
+                    blend
                     sizes="(min-width: 768px) 15rem, 12rem"
                   />
                 </div>

@@ -193,7 +193,7 @@ export function RectImage({
         className={cn(
           "object-cover",
           // 밝은 바탕 그림을 틀의 배경색에 녹인다. 바탕이 순백이 아니어도 지워지도록 살짝 밝힌다.
-          blend && "mix-blend-multiply brightness-[1.04]",
+          blend && "mix-blend-multiply brightness-[1.06]",
         )}
       />
       {outlined ? (
