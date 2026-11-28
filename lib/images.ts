@@ -105,7 +105,7 @@ export const team = {
 
 export const equipment = {
   xray: {
-    src: "/images/equipment/xray-ire-200hf.jpg",
+    src: "/images/equipment/xray-ire-200hf.png",
     alt: "디지털 방사선 장비 IRETECH IRE-200HF",
   },
   ultrasound: {
@@ -113,8 +113,8 @@ export const equipment = {
     alt: "초음파 장비 Siemens ACUSON Maple",
   },
   endoscope: {
-    src: "/images/equipment/endoscope-pentax-epm.jpg",
-    alt: "내시경 장비 PENTAX EPM",
+    src: "/images/equipment/endoscope-pentax-epk-1000.webp",
+    alt: "내시경 장비 PENTAX EPK-1000",
   },
   anesthesia: {
     src: "/images/equipment/anesthesia-mindray-veta5.jpg",
@@ -260,6 +260,11 @@ export const facility = {
     f("cat-waiting-04.jpg", "고양이 전용 대기실 전경"),
     f("cat-waiting-05.jpg", "고양이 전용 대기실 코너"),
     f("cat-waiting-06.jpg", "고양이 전용 대기실 디테일"),
+  ],
+
+  /** 면회실 */
+  visitingRoom: [
+    f("grooming-01.jpg", "보호자와 입원한 아이가 만나는 면회실"),
   ],
 
   /** 진료실 */

@@ -11,6 +11,7 @@ export const orthopedicPage: ClinicPage = {
   description:
     "슬개골 탈구 교정술, 십자인대 파열(TPLO), 대퇴골두 절제술(FHO), 골절 수술을 시행합니다. 수술 전 5단계 평가와 상담을 거쳐 보호자와 함께 결정합니다.",
   hero: facility.xrayRoom[1],
+  heroFit: "contain",
   sections: [
     {
       kind: "diseases",

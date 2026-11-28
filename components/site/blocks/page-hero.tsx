@@ -38,6 +38,7 @@ export function PageHero({
   title,
   lede,
   image,
+  imageFit = "cover",
   crumbs,
   className,
 }: {
@@ -45,6 +46,7 @@ export function PageHero({
   title: string;
   lede?: string;
   image: Img;
+  imageFit?: "cover" | "contain";
   crumbs?: Crumb[];
   className?: string;
 }) {
@@ -95,14 +97,19 @@ export function PageHero({
           ) : null}
         </div>
 
-        <div className="relative aspect-[4/3] bg-[#3a4b5e] lg:aspect-auto">
+        <div
+          className={cn(
+            "relative aspect-[4/3] lg:aspect-auto",
+            imageFit === "contain" ? "bg-navy" : "bg-[#3a4b5e]",
+          )}
+        >
           <Image
             src={image.src}
             alt={image.alt}
             fill
             priority
             sizes="(min-width: 1024px) 56vw, 100vw"
-            className="object-cover"
+            className={imageFit === "contain" ? "object-contain" : "object-cover"}
           />
         </div>
       </div>

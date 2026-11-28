@@ -46,7 +46,7 @@ export const equipmentGroups: EquipmentGroup[] = [
       },
       {
         name: "내시경",
-        model: "PENTAX EPM",
+        model: "PENTAX EPK-1000",
         body: "식도부터 위, 십이지장까지 직접 내부를 확인할 수 있어 이물질 제거뿐만 아니라 점막의 염증, 궤양 여부까지 정밀하게 검사할 수 있습니다. 마취하에 진행되는 비침습적 검사로 절개가 필요 없어 회복이 빠르며, 보호자분께도 검사 결과를 영상으로 직접 설명드릴 수 있어 진료의 투명성과 신뢰도를 동시에 높여줍니다.",
         image: photos.endoscope,
       },

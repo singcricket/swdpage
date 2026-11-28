@@ -50,6 +50,7 @@ export function ClinicPageLayout({
         title={page.headline}
         lede={page.lede}
         image={hero ?? page.hero}
+        imageFit={page.heroFit}
         crumbs={crumbs}
       />
 
